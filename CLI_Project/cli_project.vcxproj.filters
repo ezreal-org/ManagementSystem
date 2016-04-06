@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="loginForm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="memberInfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="storage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="adIndexForm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stuList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="addStu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="memberService.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="addMajor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="allMajor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="teaIndexForm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="addNewCourse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stuIndexForm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="selectCourse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="courseSelected.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stuInfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="updatePasswd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="recordGrade.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="staffManagement.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="allCourseArrangement.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeDefinition.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="loginForm.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adIndexForm.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="stuList.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addStu.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addMajor.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="allMajor.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="teaIndexForm.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="updatePasswd.resx">
+      <Filter>头文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addNewCourse.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="courseSelected.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="recordGrade.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="selectCourse.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="stuIndexForm.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="allCourseArrangement.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="staffManagement.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="stuInfo.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="managementSystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

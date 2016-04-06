@@ -1,0 +1,17 @@
+#pragma once
+enum class LoginUserType
+{
+	LOGIN_ADMIN = 0,
+	LOGIN_ACADEMICSTAFF,
+	LOGIN_TEACHER,
+	LOGIN_STUDENT = -1
+};
+
+enum class UserTypeCode
+{
+	USER_ADMIN = 0,
+	USER_ACADEMICSTAFF,
+	USER_TEACHER,
+	USER_GRADUATE,
+	USER_UNDERGRADUATE
+};
