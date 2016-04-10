@@ -185,6 +185,9 @@
     <ClInclude Include="courseSelected.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="helpInfo.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="loginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
