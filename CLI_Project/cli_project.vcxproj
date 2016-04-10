@@ -173,6 +173,9 @@
     <ClInclude Include="adIndexForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="allCourse.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="allCourseArrangement.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -209,7 +212,7 @@
     <ClInclude Include="teaIndexForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="TypeDefinition.h" />
+    <ClInclude Include="typeDefinition.h" />
     <ClInclude Include="updatePasswd.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -226,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="adIndexForm.resx">
       <DependentUpon>adIndexForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="allCourse.resx">
+      <DependentUpon>allCourse.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="allCourseArrangement.resx">
       <DependentUpon>allCourseArrangement.h</DependentUpon>
@@ -262,7 +268,7 @@
       <DependentUpon>teaIndexForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="updatePasswd.resx">
-      <SubType>Designer</SubType>
+      <DependentUpon>updatePasswd.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

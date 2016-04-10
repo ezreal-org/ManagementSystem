@@ -1,6 +1,6 @@
 #pragma once
 #include "memberInfo.h"
-#include "TypeDefinition.h"
+#include "typeDefinition.h"
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -21,7 +21,7 @@ namespace ManagementSystemV5 {
 			char *path = "C:\\managementSystem\\login\\admin.txt";
 			if (type == LoginUserType::LOGIN_ADMIN) {   //管理员
 				input.open(path, ios::in);  //文本文件读取
-				if (!input) { MessageBox::Show("文件读写异常！"); return nullptr; }
+				if (!input) { MessageBox::Show("文件读写异常！"); input.close(); return nullptr; }
 				sprintf(loginInfo, "%s|%s|%d", id, passwd, type);
 				while (!input.eof()) {
 					input.getline(buffer, 100);
@@ -43,8 +43,8 @@ namespace ManagementSystemV5 {
 				if (strcmp(p->getPasswd(), passwd) == 0 && (p->getType() == (int)type || type == LoginUserType::LOGIN_STUDENT)) {
 					return p;
 				}
-				return nullptr; //用户名密码不匹配
 			}
+			return nullptr; //用户名密码不匹配
 		}
 		//修改密码
 		bool updateInfo(int type, char* id, char* oldpw, char *passwd)
@@ -66,7 +66,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\login\\%s.dat", p->getId());
 			output.open(path, ios::out | ios::binary);
-			if (!output) { MessageBox::Show("文件读写异常!"); return false; }
+			if (!output) { MessageBox::Show("文件读写异常!"); output.close();  return false; }
 			output.write((char*)p, sizeof(UserTable));
 			output.close();
 			delete p;
@@ -80,12 +80,14 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\login\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) { return nullptr; }
+			if (!f) { f.close(); return nullptr; }
 			f.read((char*)p, sizeof(UserTable));
+			f.close();
 			return p;
 		}
 		//删除登录账户
-		bool deleteLoginInfo(char *id){
+		bool deleteLoginInfo(char *id)
+		{
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\login\\%s.dat", id);
 			if (!remove(path)) { //删除成功remove返回0
@@ -93,39 +95,14 @@ namespace ManagementSystemV5 {
 			}
 			return false;
 		}
-		//删除教务员/教师信息
-		bool deleteStaffInfo(char *id, int type)
-		{
-			char path[100];
-			if(type== (int)UserTypeCode::USER_ACADEMICSTAFF) //教务员
-				sprintf(path, "C:\\managementSystem\\staff\\academicStaff\\%s.dat", id);
-			else if(type == (int)UserTypeCode::USER_TEACHER)
-				sprintf(path, "C:\\managementSystem\\staff\\teacher\\%s.dat", id);
-			if (!remove(path)) { //删除成功
-				return true;
-			}
-			return false;
-		}
-		//删除学生信息
-		bool deleteStuInfo(char *id, int type)
-		{
-			char path[100];
-			if (type == (int)UserTypeCode::USER_GRADUATE) //研究生
-				sprintf(path, "C:\\managementSystem\\stu\\graduate\\%s.dat", id);
-			else if (type == (int)UserTypeCode::USER_UNDERGRADUATE)
-				sprintf(path, "C:\\managementSystem\\stu\\undergraduate\\%s.dat", id);
-			if (!remove(path)) { //删除成功
-				return true;
-			}
-			return false;
-		}
+		//写课程表
 		bool writeCourse(Course *p)
 		{
 			fstream f;
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\course\\%s.dat", p->getCourseCode());
 			f.open(path, ios::out | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return false; }
+			if (!f) { MessageBox::Show("文件读写异常!"); f.close(); return false; }
 			f.write((char*)p, sizeof(Course));
 			f.close();
 			return true;
@@ -137,10 +114,20 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\course\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return nullptr; }
+			if (!f) { f.close(); return nullptr; }
 			f.read((char*)p, sizeof(Course));
 			f.close();
 			return p;
+		}
+		//删除课程
+		bool deleteCourse(char *id)
+		{
+			char path[100];
+			sprintf(path, "C:\\managementSystem\\course\\%s.dat", id);
+			if (!remove(path)) { //删除成功
+				return true;
+			}
+			return false;
 		}
 		bool writeMajor(Major *p)
 		{
@@ -160,10 +147,20 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\major\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return nullptr; }
+			if (!f) { f.close(); return nullptr; }
 			f.read((char*)p, sizeof(Major));
 			f.close();
 			return p;
+		}
+		//删除专业
+		bool deleteMajor(char *id)
+		{
+			char path[100];
+			sprintf(path, "C:\\managementSystem\\major\\%s.dat", id);
+			if (!remove(path)) { //删除成功
+				return true;
+			}
+			return false;
 		}
 		//写排课表
 		bool writeCourseArrangement(courseArrangement *p)
@@ -184,10 +181,20 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\courseArrangement\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) {  return nullptr; }
+			if (!f) { f.close(); return nullptr; }
 			f.read((char*)p, sizeof(courseArrangement));
 			f.close();
 			return p;
+		}
+		//删除排课表
+		bool deleteCourseArrangement(char *id)
+		{
+			char path[100];
+			sprintf(path, "C:\\managementSystem\\courseArrangement\\%s.dat", id);
+			if (!remove(path)) { //删除成功
+				return true;
+			}
+			return false;
 		}
 		bool writeSelectedCourse(selectedCourse *p)
 		{
@@ -207,10 +214,20 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\selectedCourses\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return nullptr; }
+			if (!f) { f.close(); return nullptr; }
 			f.read((char*)p, sizeof(selectedCourse));
 			f.close();
 			return p;
+		}
+		//删除选课表
+		bool deleteSelectedCourse(char *id)
+		{
+			char path[100];
+			sprintf(path, "C:\\managementSystem\\selectedCourses\\%s.dat", id);
+			if (!remove(path)) { //删除成功
+				return true;
+			}
+			return false;
 		}
 		AcademicStaffTable* readAcademicStaffInfo(char *id)
 		{
@@ -242,7 +259,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\staff\\teacher\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return nullptr; }
+			if (!f) { f.close(); return nullptr; }
 			f.read((char*)p1, sizeof(TeacherTable));
 			f.close();
 			return p1;
@@ -258,6 +275,19 @@ namespace ManagementSystemV5 {
 			f.close();
 			return true;
 		}
+		//删除教务员/教师信息
+		bool deleteStaffInfo(char *id, int type)
+		{
+			char path[100];
+			if (type == (int)UserTypeCode::USER_ACADEMICSTAFF) //教务员
+				sprintf(path, "C:\\managementSystem\\staff\\academicStaff\\%s.dat", id);
+			else if (type == (int)UserTypeCode::USER_TEACHER)
+				sprintf(path, "C:\\managementSystem\\staff\\teacher\\%s.dat", id);
+			if (!remove(path)) { //删除成功
+				return true;
+			}
+			return false;
+		}
 		GraduateTable* readGraduateInfo(char *id)
 		{
 			GraduateTable*  p1 = new GraduateTable();
@@ -265,7 +295,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\stu\\graduate\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return nullptr; }
+			if (!f) { f.close(); return nullptr; }
 			f.read((char*)p1, sizeof(GraduateTable));
 			f.close();
 			return p1;
@@ -276,7 +306,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\stu\\graduate\\%s.dat", p->getId());
 			f.open(path, ios::out | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return false; }
+			if (!f) { MessageBox::Show("文件读写异常!"); f.close();  return false; }
 			f.write((char*)p, sizeof(GraduateTable));
 			f.close();
 			return true;
@@ -288,7 +318,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\stu\\undergraduate\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return nullptr; }
+			if (!f) {  f.close(); return nullptr; }
 			f.read((char*)p1, sizeof(UndergraduateTable));
 			f.close();
 			return p1;
@@ -299,10 +329,23 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\stu\\undergraduate\\%s.dat", p->getId(), p->getName());
 			f.open(path, ios::out | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return false; }
+			if (!f) { MessageBox::Show("文件读写异常!"); f.close(); return false; }
 			f.write((char*)p, sizeof(UndergraduateTable));
 			f.close();
 			return true;
+		}
+		//删除学生信息
+		bool deleteStuInfo(char *id, int type)
+		{
+			char path[100];
+			if (type == (int)UserTypeCode::USER_GRADUATE) //研究生
+				sprintf(path, "C:\\managementSystem\\stu\\graduate\\%s.dat", id);
+			else if (type == (int)UserTypeCode::USER_UNDERGRADUATE)
+				sprintf(path, "C:\\managementSystem\\stu\\undergraduate\\%s.dat", id);
+			if (!remove(path)) { //删除成功
+				return true;
+			}
+			return false;
 		}
 		cli::array<String^>^ readAllStuId(int type) //学生类型
 		{

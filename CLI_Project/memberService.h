@@ -1,6 +1,6 @@
 #pragma once
 #include "memberInfo.h"
-#include "TypeDefinition.h"
+#include "typeDefinition.h"
 #include "storage.h"
 #include <vector>
 
@@ -106,6 +106,11 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.readMajor(id);
 		}
+		//删除专业
+		bool deleteMajor(char *id){
+			Storage storage;
+			return storage.deleteMajor(id);
+		}
 		//为学生创建默认登录表
 		bool writeInitLoginInfo(char *id, char *passwd, int type)
 		{
@@ -122,6 +127,7 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.writeGraduate(p);
 		}
+		// 写入本科生信息
 		bool writeUndergraduate(UndergraduateTable *p)
 		{
 			Storage storage;
@@ -204,6 +210,14 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.readCourse(idName);
 		}
+
+		//删除课程信息
+		bool deleteCourse(char *id)
+		{
+			Storage storage;
+			return storage.deleteCourse(id);
+		}
+
 		//读教师个人信息
 		TeacherTable* readTeacherInfo(char *tid)
 		{
@@ -215,6 +229,11 @@ namespace ManagementSystemV5 {
 		{
 			Storage storage;
 			return storage.readCourseArrangement(id);
+		}
+		//删除排课记录
+		bool deleteCourseArrangement(char *id){
+			Storage storage;
+			return storage.deleteCourseArrangement(id);
 		}
 		//更新排课表
 		bool writeCourseArrangement(courseArrangement *p)
@@ -391,6 +410,7 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.readCourse(idName);
 		}
+
 		courseArrangement* readCourseArrangement(char *id)
 		{
 			Storage storage;
@@ -401,6 +421,12 @@ namespace ManagementSystemV5 {
 		{
 			Storage storage;
 			return storage.writeSelectedCourse(p);
+		}
+		//删除选课记录
+		bool deleteSelfSelectedCourse(char *id)  //id 为课程号与学号组合
+		{
+			Storage storage;
+			return storage.deleteSelectedCourse(id);
 		}
 		//获得自己所选的所有课程id
 		cli::array<String^>^ getAllSelfSelectedCourses(char *id)

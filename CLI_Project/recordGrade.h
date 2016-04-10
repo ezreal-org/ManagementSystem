@@ -253,14 +253,15 @@ private: System::Void coursesList_SelectedIndexChanged(System::Object^  sender, 
 	Course *cs = new Course();
 	cs = tea->readCourseInfo(id);
 	stuOfCourseList->Items->Clear();
-	for each(String^ item in list)
-	{
+	for each(String^ item in list){
 		sprintf(id, "%s", item);
 		p = tea->getStuBasicInfo(cs->getType(), id);
-		stuName = p->getName();
-		item += " ";
-		item += gcnew String(stuName.c_str());
-		stuOfCourseList->Items->Add(item);
+		if (p != nullptr) {
+			stuName = p->getName();
+			item += " ";
+			item += gcnew String(stuName.c_str());
+			stuOfCourseList->Items->Add(item);
+		}
 	}
 }
 private: System::Void stuOfCourseList_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {

@@ -817,6 +817,9 @@ namespace ManagementSystemV5 {
 		}	
 		this->allStuList->Items->Add(a);
 	 }
+	if (allStuList->Items->Count > 0) {
+		this->allStuList->SelectedIndex = 0;
+	}
 	delete staff;
  }
 
@@ -836,7 +839,6 @@ private: System::Void stuTypeList_SelectedIndexChanged(System::Object^  sender, 
 	else {
 		stuInfo->TabPages->Add(undergradePage);
 	}
-	this->allStuList->SelectedIndex = 0;
 }
 
 private: System::Void delete_button_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -846,7 +848,8 @@ private: System::Void delete_button_Click(System::Object^  sender, System::Event
 	if (staff->deleteStuAccount(id)) {
 		MessageBox::Show("删除成功");
 	}
-	addStuToList((int)UserTypeCode::USER_GRADUATE);
+	int index = stuListTypeCombox->SelectedIndex;
+	addStuToList(index+3); //更新列表
 	delete staff;
 }
 };

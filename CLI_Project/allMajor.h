@@ -43,6 +43,8 @@ namespace ManagementSystemV5 {
 	private: System::Windows::Forms::Button^  modifyButton;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::ListBox^  majorList;
+	private: System::Windows::Forms::Button^  deleteButton;
+
 
 
 	private:
@@ -66,6 +68,7 @@ namespace ManagementSystemV5 {
 			this->modifyButton = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->majorList = (gcnew System::Windows::Forms::ListBox());
+			this->deleteButton = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -116,7 +119,7 @@ namespace ManagementSystemV5 {
 			// 
 			// modifyButton
 			// 
-			this->modifyButton->Location = System::Drawing::Point(293, 165);
+			this->modifyButton->Location = System::Drawing::Point(361, 165);
 			this->modifyButton->Name = L"modifyButton";
 			this->modifyButton->Size = System::Drawing::Size(75, 23);
 			this->modifyButton->TabIndex = 10;
@@ -143,6 +146,16 @@ namespace ManagementSystemV5 {
 			this->majorList->TabIndex = 12;
 			this->majorList->SelectedIndexChanged += gcnew System::EventHandler(this, &allMajor::majorList_SelectedIndexChanged);
 			// 
+			// deleteButton
+			// 
+			this->deleteButton->Location = System::Drawing::Point(264, 165);
+			this->deleteButton->Name = L"deleteButton";
+			this->deleteButton->Size = System::Drawing::Size(75, 23);
+			this->deleteButton->TabIndex = 10;
+			this->deleteButton->Text = L"删除";
+			this->deleteButton->UseVisualStyleBackColor = true;
+			this->deleteButton->Click += gcnew System::EventHandler(this, &allMajor::deleteButton_Click);
+			// 
 			// allMajor
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
@@ -150,6 +163,7 @@ namespace ManagementSystemV5 {
 			this->ClientSize = System::Drawing::Size(494, 197);
 			this->Controls->Add(this->majorList);
 			this->Controls->Add(this->groupBox1);
+			this->Controls->Add(this->deleteButton);
 			this->Controls->Add(this->modifyButton);
 			this->Controls->Add(this->label1);
 			this->Name = L"allMajor";
@@ -161,22 +175,29 @@ namespace ManagementSystemV5 {
 			this->PerformLayout();
 
 		}
+		void initMajorList() //在majorList显示所有专业摘要信息
+		{
+			this->majorList->Items->Clear();
+			AcademicStaff *staff = new AcademicStaff();
+			string name;
+			char id[20];
+			cli::array<String ^> ^list = staff->getAllMajorSummarayInfo();
+			for each (String ^a in list) {
+				sprintf(id, "%s", a);
+				name = staff->readMajorInfo(id)->getMajorName();
+				a += " ";
+				a += gcnew String(name.c_str());
+				this->majorList->Items->Add(a);
+			}
+			if (this->majorList->Items->Count > 0) {
+				this->majorList->SelectedIndex = 0;
+			}
+			delete staff;
+		}
 #pragma endregion
 	private: System::Void allMajor_Load(System::Object^  sender, System::EventArgs^  e) {
 		//在majorList显示所有专业摘要信息
-		this->majorList->Items->Clear();
-		AcademicStaff *staff = new AcademicStaff();
-		string name;
-		char id[20];
-		cli::array<String ^> ^list = staff->getAllMajorSummarayInfo();
-		for each (String ^a in list){
-			sprintf(id, "%s", a);
-			name = staff->readMajorInfo(id)->getMajorName();
-			a += " ";
-			a += gcnew String(name.c_str());
-			this->majorList->Items->Add(a);
-		}
-		delete staff;
+		initMajorList();
 	}
 private: System::Void majorList_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	char id[50],scoreArray[20];
@@ -208,6 +229,16 @@ private: System::Void modifyButton_Click(System::Object^  sender, System::EventA
 		MessageBox::Show("修改成功...");
 	}
 	delete staff,p;
+}
+private: System::Void deleteButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	char id[50];
+	sprintf(id, "%s", majorList->SelectedItem->ToString()->Substring(0, majorList->SelectedItem->ToString()->IndexOf(" ")));
+	AcademicStaff *staff = new AcademicStaff();
+	if (staff->deleteMajor(id)) {
+		MessageBox::Show("删除成功...");
+	}
+	initMajorList(); //更新专业列表
+	delete staff;
 }
 };
 }

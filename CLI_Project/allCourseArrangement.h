@@ -51,6 +51,8 @@ namespace ManagementSystemV5 {
 
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::ComboBox^  comboBox_teacher;
+	private: System::Windows::Forms::Button^  deleteButton;
+
 
 
 
@@ -78,6 +80,7 @@ namespace ManagementSystemV5 {
 			this->arrangeButton = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->courseArrangementList = (gcnew System::Windows::Forms::ListBox());
+			this->deleteButton = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -147,7 +150,7 @@ namespace ManagementSystemV5 {
 			// 
 			// arrangeButton
 			// 
-			this->arrangeButton->Location = System::Drawing::Point(384, 197);
+			this->arrangeButton->Location = System::Drawing::Point(421, 197);
 			this->arrangeButton->Name = L"arrangeButton";
 			this->arrangeButton->Size = System::Drawing::Size(75, 23);
 			this->arrangeButton->TabIndex = 10;
@@ -174,6 +177,16 @@ namespace ManagementSystemV5 {
 			this->courseArrangementList->TabIndex = 12;
 			this->courseArrangementList->SelectedIndexChanged += gcnew System::EventHandler(this, &allCourseArrangement::courseArrangementList_SelectedIndexChanged);
 			// 
+			// deleteButton
+			// 
+			this->deleteButton->Location = System::Drawing::Point(314, 197);
+			this->deleteButton->Name = L"deleteButton";
+			this->deleteButton->Size = System::Drawing::Size(75, 23);
+			this->deleteButton->TabIndex = 10;
+			this->deleteButton->Text = L"删除";
+			this->deleteButton->UseVisualStyleBackColor = true;
+			this->deleteButton->Click += gcnew System::EventHandler(this, &allCourseArrangement::deleteButton_Click);
+			// 
 			// allCourseArrangement
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
@@ -181,6 +194,7 @@ namespace ManagementSystemV5 {
 			this->ClientSize = System::Drawing::Size(577, 239);
 			this->Controls->Add(this->courseArrangementList);
 			this->Controls->Add(this->groupBox1);
+			this->Controls->Add(this->deleteButton);
 			this->Controls->Add(this->arrangeButton);
 			this->Controls->Add(this->label1);
 			this->Name = L"allCourseArrangement";
@@ -193,26 +207,33 @@ namespace ManagementSystemV5 {
 
 		}
 #pragma endregion
+		void initCourseArrangementList()
+		{
+			this->courseArrangementList->Items->Clear();
+			AcademicStaff *staff = new AcademicStaff();
+			string courseName;
+			char courseId[20];
+			cli::array<String ^> ^list = staff->getAllCourseId();
+			for each (String ^a in list) {
+				sprintf(courseId, "%s", a);
+				courseName = staff->readCourseInfo(courseId)->getCourseName();
+				a += " ";
+				a += gcnew String(courseName.c_str());
+				this->courseArrangementList->Items->Add(a);
+			}
+			delete staff;
+		}
 	private: System::Void allCourseArrangement_Load(System::Object^  sender, System::EventArgs^  e) {
 		//在courseArrangementList显示所以排课表摘要信息
-		this->courseArrangementList->Items->Clear();
+		initCourseArrangementList();
+
+		//初始化任课老师下拉选框
+		string teaName;
+		char teacherId[20];
 		AcademicStaff *staff = new AcademicStaff();
-		string courseName, teaName;
-		char courseId[20], teacherId[20];
-		int type;
-		cli::array<String ^> ^list = staff->getAllCourseId();
-		for each (String ^a in list){
-			sprintf(courseId, "%s", a);
-			courseName = staff->readCourseInfo(courseId)->getCourseName();
-			type = staff->readCourseInfo(courseId)->getType();
-			a += " ";
-			a += gcnew String(courseName.c_str());
-			this->courseArrangementList->Items->Add(a);
-		}
-		//初始化任课老师Combox
 		comboBox_teacher->Items->Clear();
 		comboBox_teacher->Items->Add("--选择任课教师--");
-		list = staff->getAllTeacherId();
+		cli::array<String ^> ^list = staff->getAllTeacherId();
 		for each(String ^tid in list) {
 			sprintf(teacherId, "%s", tid);
 			teaName = staff->readTeacherInfo(teacherId)->getName();
@@ -220,6 +241,7 @@ namespace ManagementSystemV5 {
 			tid += gcnew String(teaName.c_str());
 			comboBox_teacher->Items->Add(tid);
 		}
+
 		delete staff;
 	}
 	private: System::Void courseArrangementList_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -233,6 +255,8 @@ namespace ManagementSystemV5 {
 		courseArrangement *p = staff->readCourseArrangement(courseId);
 		//初始化任课老师Combox
 		this->comboBox_teacher->SelectedIndex = 0;
+		tb_classRoom->Text = "";
+		tb_classTime->Text = "";
 		if (p != nullptr) {
 			strTemp = p->getTeacherId();
 			teaId = gcnew String(strTemp.c_str());
@@ -268,5 +292,17 @@ namespace ManagementSystemV5 {
 		}
 		delete staff, p;
 	}
-	};
+	private: System::Void deleteButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		char courseId[20];
+		sprintf(courseId, "%s", courseArrangementList->SelectedItem->ToString()->Substring(0, courseArrangementList->SelectedItem->ToString()->IndexOf(" ")));
+		AcademicStaff *staff = new AcademicStaff();
+		if (staff->deleteCourseArrangement(courseId)) {
+			MessageBox::Show("删除成功...");
+			tb_classRoom->Text = "";
+			tb_classTime->Text = "";
+		}
+		initCourseArrangementList(); //更新排课列表
+		delete staff;
+	}
+};
 }

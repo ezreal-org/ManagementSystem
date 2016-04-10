@@ -4,7 +4,7 @@
 #include "stuIndexForm.h"
 #include "memberService.h"
 #include "staffManagement.h"
-#include "TypeDefinition.h"
+#include "typeDefinition.h"
 
 namespace ManagementSystemV5 {
 

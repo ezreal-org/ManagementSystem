@@ -1,4 +1,6 @@
 #pragma once
+#include "memberInfo.h"
+#include "memberService.h"
 
 namespace ManagementSystemV5 {
 
@@ -200,5 +202,5 @@ namespace ManagementSystemV5 {
 		}
 		else { MessageBox::Show("请输入正确原密码！"); }
 	}
-};
+	};
 }

@@ -74,50 +74,56 @@ namespace ManagementSystemV5 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(35, 42);
+			this->label1->Location = System::Drawing::Point(70, 84);
+			this->label1->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(65, 12);
+			this->label1->Size = System::Drawing::Size(137, 25);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"课程名称：";
 			// 
 			// courseNameTbox
 			// 
-			this->courseNameTbox->Location = System::Drawing::Point(99, 36);
+			this->courseNameTbox->Location = System::Drawing::Point(198, 72);
+			this->courseNameTbox->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->courseNameTbox->Name = L"courseNameTbox";
-			this->courseNameTbox->Size = System::Drawing::Size(100, 21);
+			this->courseNameTbox->Size = System::Drawing::Size(196, 35);
 			this->courseNameTbox->TabIndex = 1;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(228, 39);
+			this->label2->Location = System::Drawing::Point(456, 78);
+			this->label2->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(41, 12);
+			this->label2->Size = System::Drawing::Size(87, 25);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"学分：";
 			// 
 			// courseCreditTbox
 			// 
-			this->courseCreditTbox->Location = System::Drawing::Point(275, 36);
+			this->courseCreditTbox->Location = System::Drawing::Point(550, 72);
+			this->courseCreditTbox->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->courseCreditTbox->Name = L"courseCreditTbox";
-			this->courseCreditTbox->Size = System::Drawing::Size(100, 21);
+			this->courseCreditTbox->Size = System::Drawing::Size(196, 35);
 			this->courseCreditTbox->TabIndex = 3;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(204, 91);
+			this->label3->Location = System::Drawing::Point(408, 182);
+			this->label3->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(65, 12);
+			this->label3->Size = System::Drawing::Size(137, 25);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"课程类型：";
 			// 
 			// underGraduateCourseRadio
 			// 
 			this->underGraduateCourseRadio->AutoSize = true;
-			this->underGraduateCourseRadio->Location = System::Drawing::Point(275, 89);
+			this->underGraduateCourseRadio->Location = System::Drawing::Point(550, 178);
+			this->underGraduateCourseRadio->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->underGraduateCourseRadio->Name = L"underGraduateCourseRadio";
-			this->underGraduateCourseRadio->Size = System::Drawing::Size(59, 16);
+			this->underGraduateCourseRadio->Size = System::Drawing::Size(112, 29);
 			this->underGraduateCourseRadio->TabIndex = 5;
 			this->underGraduateCourseRadio->TabStop = true;
 			this->underGraduateCourseRadio->Text = L"本科生";
@@ -126,9 +132,10 @@ namespace ManagementSystemV5 {
 			// graduateRadio
 			// 
 			this->graduateRadio->AutoSize = true;
-			this->graduateRadio->Location = System::Drawing::Point(339, 89);
+			this->graduateRadio->Location = System::Drawing::Point(678, 178);
+			this->graduateRadio->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->graduateRadio->Name = L"graduateRadio";
-			this->graduateRadio->Size = System::Drawing::Size(59, 16);
+			this->graduateRadio->Size = System::Drawing::Size(112, 29);
 			this->graduateRadio->TabIndex = 6;
 			this->graduateRadio->TabStop = true;
 			this->graduateRadio->Text = L"硕士生";
@@ -136,9 +143,10 @@ namespace ManagementSystemV5 {
 			// 
 			// submitButton
 			// 
-			this->submitButton->Location = System::Drawing::Point(184, 146);
+			this->submitButton->Location = System::Drawing::Point(368, 292);
+			this->submitButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->submitButton->Name = L"submitButton";
-			this->submitButton->Size = System::Drawing::Size(85, 23);
+			this->submitButton->Size = System::Drawing::Size(170, 46);
 			this->submitButton->TabIndex = 7;
 			this->submitButton->Text = L"提 交";
 			this->submitButton->UseVisualStyleBackColor = true;
@@ -147,24 +155,26 @@ namespace ManagementSystemV5 {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(35, 89);
+			this->label4->Location = System::Drawing::Point(70, 178);
+			this->label4->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(65, 12);
+			this->label4->Size = System::Drawing::Size(137, 25);
 			this->label4->TabIndex = 0;
 			this->label4->Text = L"课程代码：";
 			// 
 			// courseCodeTbox
 			// 
-			this->courseCodeTbox->Location = System::Drawing::Point(99, 85);
+			this->courseCodeTbox->Location = System::Drawing::Point(198, 170);
+			this->courseCodeTbox->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->courseCodeTbox->Name = L"courseCodeTbox";
-			this->courseCodeTbox->Size = System::Drawing::Size(100, 21);
+			this->courseCodeTbox->Size = System::Drawing::Size(196, 35);
 			this->courseCodeTbox->TabIndex = 1;
 			// 
 			// addNewCourse
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
+			this->AutoScaleDimensions = System::Drawing::SizeF(12, 24);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(454, 201);
+			this->ClientSize = System::Drawing::Size(908, 402);
 			this->Controls->Add(this->submitButton);
 			this->Controls->Add(this->graduateRadio);
 			this->Controls->Add(this->underGraduateCourseRadio);
@@ -175,7 +185,9 @@ namespace ManagementSystemV5 {
 			this->Controls->Add(this->courseNameTbox);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->Name = L"addNewCourse";
+			this->Text = L"添加课程";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

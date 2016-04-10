@@ -60,9 +60,6 @@
     <ClInclude Include="stuInfo.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="updatePasswd.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="recordGrade.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -73,6 +70,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="TypeDefinition.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="updatePasswd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="allCourse.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -97,9 +100,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="teaIndexForm.resx">
       <Filter>资源文件</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="updatePasswd.resx">
-      <Filter>头文件</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="addNewCourse.resx">
       <Filter>资源文件</Filter>
