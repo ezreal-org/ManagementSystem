@@ -14,7 +14,6 @@ namespace ManagementSystemV5 {
 		//登录
 		UserTable* login(char* id, char* passwd, LoginUserType type) //不同type对应不同类型用户登录文件
 		{
-			//约定type=0为系统管理员,1为教务员,2为教师,3为硕士生,4为本科生
 			char buffer[100];
 			char loginInfo[100];
 			ifstream input;
@@ -135,7 +134,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\major\\%s.dat", p->getMajorCode());
 			f.open(path, ios::out | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return false; }
+			if (!f) { MessageBox::Show("文件读写异常!"); f.close(); return false; }
 			f.write((char*)p, sizeof(Major));
 			f.close();
 			return true;
@@ -169,7 +168,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\courseArrangement\\%s.dat", p->getCourseId());
 			f.open(path, ios::out | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return false; }
+			if (!f) { MessageBox::Show("文件读写异常!"); f.close(); return false; }
 			f.write((char*)p, sizeof(courseArrangement));
 			f.close();
 			return true;
@@ -202,7 +201,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\selectedCourses\\%s %s.dat", p->getCourseId(), p->getStuId());
 			f.open(path, ios::out | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return false; }
+			if (!f) { MessageBox::Show("文件读写异常!"); f.close(); return false; }
 			f.write((char*)p, sizeof(selectedCourse));
 			f.close();
 			return true;
@@ -236,7 +235,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\staff\\academicStaff\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return nullptr; }
+			if (!f) { MessageBox::Show("文件读写异常!"); f.close(); return nullptr; }
 			f.read((char*)p1, sizeof(AcademicStaffTable));
 			f.close();
 			return p1;
@@ -247,7 +246,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\staff\\academicStaff\\%s.dat", p->getId());
 			f.open(path, ios::out | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return false; }
+			if (!f) { MessageBox::Show("文件读写异常!"); f.close(); return false; }
 			f.write((char*)p, sizeof(AcademicStaffTable));
 			f.close();
 			return true;
@@ -270,7 +269,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\staff\\teacher\\%s.dat", p->getId());
 			f.open(path, ios::out | ios::binary);
-			if (!f) { MessageBox::Show("文件读写异常!"); return false; }
+			if (!f) { MessageBox::Show("文件读写异常!"); f.close(); return false; }
 			f.write((char*)p, sizeof(TeacherTable));
 			f.close();
 			return true;
