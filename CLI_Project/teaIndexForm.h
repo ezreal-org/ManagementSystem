@@ -4,6 +4,7 @@
 #include "memberInfo.h"
 #include "memberService.h"
 #include "updatePasswd.h"
+#include "ChartForm.h"
 
 namespace ManagementSystemV5 {
 
@@ -302,7 +303,12 @@ namespace ManagementSystemV5 {
 		Application::Exit();
 	}
 	private: System::Void checkAllGradeItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("该模块将在后续章节案例中讲解");
+		ChartForm ^cF = gcnew ChartForm(thisLogin);
+		cF->Name = "chartform";
+		cF->MdiParent = this;
+		cF->StartPosition = FormStartPosition::CenterParent;
+		cF->WindowState = FormWindowState::Maximized;
+		cF->Show();
 	}
 	};
 }

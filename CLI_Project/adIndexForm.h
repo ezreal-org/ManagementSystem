@@ -7,6 +7,7 @@
 #include "updatePasswd.h"
 #include "allCourseArrangement.h"
 #include "addNewCourse.h"
+#include "ChartForm.h"
 
 namespace ManagementSystemV5 {
 
@@ -50,49 +51,15 @@ namespace ManagementSystemV5 {
 		}
 	private: UserTable* thisLogin;
 	private: bool canQuit;
-
-
-
-
-
-
-
-	protected:
-
-
 	private: System::Windows::Forms::StatusStrip^  statusStrip1;
 	private: System::Windows::Forms::ToolStripStatusLabel^  NowDate;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::ToolStripStatusLabel^  toolStripStatusLabel2;
 	private: System::Windows::Forms::ToolStripStatusLabel^  NowTime;
 	private: System::Windows::Forms::Timer^  timer1;
-			 //private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::NotifyIcon^  notifyIcon1;
 	private: System::Windows::Forms::ContextMenuStrip^  contextMenuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^  show;
 	private: System::Windows::Forms::ToolStripMenuItem^  quit;
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::ToolStripMenuItem^  selfInfoItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  resetPSItem;
@@ -113,21 +80,7 @@ namespace ManagementSystemV5 {
 	private: System::Windows::Forms::ToolStripMenuItem^  aboutSysItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  exitItem;
 	private: System::Windows::Forms::MenuStrip^  adIndexMenu;
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::ComponentModel::IContainer^  components;
-
 	private:
 		/// <summary>
 		/// 必需的设计器变量。
@@ -545,7 +498,12 @@ namespace ManagementSystemV5 {
 		this->Hide();
 	}
 	private: System::Void checkGradeItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("该模块将在后续章节案例中讲解");
+		ChartForm ^ chart = gcnew ChartForm(this->thisLogin);
+		addCourse->Name = "chartForm";
+		chart->MdiParent = this;
+		chart->StartPosition = FormStartPosition::CenterParent;
+		chart->WindowState = FormWindowState::Maximized;
+		chart->Show();
 	}
 	private: System::Void courseArrange_Click(System::Object^  sender, System::EventArgs^  e) {
 		allCourseArrangement ^courseArrange = gcnew allCourseArrangement();

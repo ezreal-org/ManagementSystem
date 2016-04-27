@@ -3,6 +3,7 @@
 #include "courseSelected.h"
 #include "updatePasswd.h"
 #include "stuInfo.h"
+#include "ChartForm.h"
 
 namespace ManagementSystemV5 {
 
@@ -358,7 +359,12 @@ namespace ManagementSystemV5 {
 		cS->Show();
 	}
 	private: System::Void checkAllGradeItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("本模块将在第五章进行实现");
+		ChartForm ^cF = gcnew ChartForm(thisLogin);
+		cF->Name = "chartform";
+		cF->MdiParent = this;
+		cF->StartPosition = FormStartPosition::CenterParent;
+		cF->WindowState = FormWindowState::Maximized;
+		cF->Show();
 	}
 	private: System::Void exitItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->Hide();

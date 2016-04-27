@@ -129,7 +129,7 @@ namespace ManagementSystemV5 {
 		if (infoTree->SelectedNode->Text == "Ŀ¼") {
 			return;
 		}
-		String ^filename = "C:\\managementSystem\\helpInfo \\" + infoTree->SelectedNode->Text + ".rtf";
+		String ^filename = "C:\\managementSystem\\helpInfo\\" + infoTree->SelectedNode->Text + ".rtf";
 		try {
 			contentDetailBox->LoadFile(filename);
 		}
