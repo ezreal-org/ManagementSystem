@@ -21,10 +21,10 @@ namespace ManagementSystemV5 {
 		OdbcDataAdapter ^adapter; //sql命令和数据源的桥接对象
 		DataSet^ set; //结果缓存集
 
-					  /*   dbConnect方法用于初始化数据库连接。该函数使用指定的用户名、密码访问数据源，接下来用sql语句和数据库连接创建桥接对象，再从桥接对象中填充set结果集合，并创建tableName指定的表对象，然后程序就可以通过tableName去操作set中的数据 */
+		/*   dbConnect方法用于初始化数据库连接。该函数使用指定的用户名、密码访问数据源，接下来用sql语句和数据库连接创建桥接对象，再从桥接对象中填充set结果集合，并创建tableName指定的表对象，然后程序就可以通过tableName去操作set中的数据 */
 		bool dbConnect(String^ sql, String ^tableName) { //tableName为想要填充的数据表
 			try { //获得数据库连接，UI、PWD分别为访问mangement数据库的用户名和密码
-				Conn = gcnew OdbcConnection("DSN=management;UI=root;PWD=tk;");
+				Conn = gcnew OdbcConnection("DSN=managementSystemV5;UI=root;PWD=tk;");
 				//用指定sql语句、数据库连接创建桥接对象
 				adapter = gcnew OdbcDataAdapter(sql, Conn);
 				set = gcnew DataSet();
@@ -297,11 +297,17 @@ namespace ManagementSystemV5 {
 			if (!dbConnect("select * from courseArrangement;", "courseArrangement"))
 				return false;
 			DataTable^ table = set->Tables["courseArrangement"];
-			cli::array<String^>^ keyForFind = gcnew cli::array<String^>(1);
-			cli::array<String^>^ primaryKeyList = gcnew cli::array<String^>(1);
-			string strKey = id;
-			keyForFind[0] = gcnew String(strKey.c_str());
+			string temp = id;
+			String ^cIdTeaId = gcnew String(temp.c_str());
+			//主键为 courseId 和 teacherId 的组合
+			String ^courseId = cIdTeaId->Substring(0, cIdTeaId->IndexOf(" "));
+			String ^teacherId = cIdTeaId->Substring(cIdTeaId->IndexOf(" ") + 1);
+			cli::array<String^>^ keyForFind = gcnew cli::array<String^>(2);
+			cli::array<String^>^ primaryKeyList = gcnew cli::array<String^>(2);
+			keyForFind[0] = courseId;
+			keyForFind[1] = teacherId;
 			primaryKeyList[0] = "courseId";
+			primaryKeyList[1] = "teacherId";
 			DataRow^ row = getRowById("courseArrangement", primaryKeyList, keyForFind);
 			if (row != nullptr) {
 				row->Delete();
@@ -317,11 +323,14 @@ namespace ManagementSystemV5 {
 			if (!dbConnect("select * from coursearrangement;", "coursearrangement"))
 				return false;
 			DataTable^ table = set->Tables["coursearrangement"];
-			cli::array<String^>^ keyForFind = gcnew cli::array<String^>(1);
-			cli::array<String^>^ primaryKeyList = gcnew cli::array<String^>(1);
+			cli::array<String^>^ keyForFind = gcnew cli::array<String^>(2);
+			cli::array<String^>^ primaryKeyList = gcnew cli::array<String^>(2);
 			string strKey = p->getCourseId();
 			keyForFind[0] = gcnew String(strKey.c_str());
+			strKey = p->getTeacherId();
+			keyForFind[1] = gcnew String(strKey.c_str());
 			primaryKeyList[0] = "courseId";
+			primaryKeyList[1] = "teacherId";
 			DataRow^ row = getRowById("coursearrangement", primaryKeyList, keyForFind);
 			if (row != nullptr) {
 				row->Delete();
@@ -346,11 +355,17 @@ namespace ManagementSystemV5 {
 			courseArrangement *p = new courseArrangement();
 			if (!dbConnect("select * from coursearrangement;", "coursearrangement"))
 				return nullptr;
-			cli::array<String^>^ keyForFind = gcnew cli::array<String^>(1);
-			cli::array<String^>^ primaryKeyList = gcnew cli::array<String^>(1);
-			string strKey = id;
-			keyForFind[0] = gcnew String(strKey.c_str());
+			cli::array<String^>^ keyForFind = gcnew cli::array<String^>(2);
+			cli::array<String^>^ primaryKeyList = gcnew cli::array<String^>(2);
+			string temp = id;
+			String ^cIdTeaId = gcnew String(temp.c_str());
+			//主键为 courseId 和 teacherId 的组合
+			String ^courseId = cIdTeaId->Substring(0, cIdTeaId->IndexOf(" "));
+			String ^teacherId = cIdTeaId->Substring(cIdTeaId->IndexOf(" ") + 1);
+			keyForFind[0] = courseId;
+			keyForFind[1] = teacherId;
 			primaryKeyList[0] = "courseId";
+			primaryKeyList[1] = "teacherId";
 			DataRow^ row = getRowById("coursearrangement", primaryKeyList, keyForFind);
 			if (row == nullptr) return nullptr;
 			p->setCourseId(id);
@@ -363,20 +378,25 @@ namespace ManagementSystemV5 {
 			return p;
 		}// readCourseArrangement方法定义结束
 
-		 //deleteSelectedCourse()函数的功能是从数据表中删除ID指定的选课记录
 		bool deleteSelectedCourse(char *id) {
-			if (!dbConnect("select * from selectedCourses;", "selectedCourses"))
+			if (!dbConnect("select * from selectedcourse;", "selectedcourse"))
 				return false;
-			DataTable^ table = set->Tables["selectedCourses"];
-			cli::array<String^>^ keyForFind = gcnew cli::array<String^>(1);
-			cli::array<String^>^ primaryKeyList = gcnew cli::array<String^>(1);
-			string strKey = id;
-			keyForFind[0] = gcnew String(strKey.c_str());
+			DataTable^ table = set->Tables["selectedcourse"];
+			string temp = id;
+			String ^cIdstuId = gcnew String(temp.c_str());
+			//主键为 courseId 和 stuId 的组合
+			String ^courseId = cIdstuId->Substring(0, cIdstuId->IndexOf(" "));
+			String ^stuId = cIdstuId->Substring(cIdstuId->IndexOf(" ") + 1);
+			cli::array<String^>^ keyForFind = gcnew cli::array<String^>(2);
+			cli::array<String^>^ primaryKeyList = gcnew cli::array<String^>(2);
+			keyForFind[0] = courseId;
+			keyForFind[1] = stuId;
 			primaryKeyList[0] = "courseId";
-			DataRow^ row = getRowById("selectedCourses", primaryKeyList, keyForFind);
+			primaryKeyList[1] = "stuId";
+			DataRow^ row = getRowById("selectedcourse", primaryKeyList, keyForFind);
 			if (row != nullptr) {
 				row->Delete();
-				if (persistent("selectedCourses")) {
+				if (persistent("selectedcourse")) {
 					return true;
 				}
 			}
@@ -808,7 +828,7 @@ namespace ManagementSystemV5 {
 			return retString;
 		}// readAllMajorId方法定义结束
 
-		 // readAllCourseArrangementId()函数的功能是获取所有排课表主键(courseId)
+		 // readAllCourseArrangementId()函数的功能是获取所有排课表(courseId+teacherId)
 		cli::array<String^>^ readAllCourseArrangementId() {
 			if (!dbConnect("select * from coursearrangement;", "coursearrangement"))
 				return nullptr;
@@ -816,7 +836,9 @@ namespace ManagementSystemV5 {
 			cli::array<String^>^ retString = gcnew cli::array<String^>(table->Rows->Count);
 			int index = 0;
 			for each(DataRow^ row in table->Rows) {
-				retString[index++] = (String^)(row["courseId"]);
+				retString[index] = (String^)(row["courseId"]);
+				retString[index] += " ";
+				retString[index++] += (String^)(row["teacherId"]);
 			}
 			return retString;
 		}// readAllCourseArrangementId方法定义结束

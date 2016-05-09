@@ -1,9 +1,11 @@
 #pragma once
 #include "selectCourse.h"
+#include "typeDefinition.h"
 #include "courseSelected.h"
 #include "updatePasswd.h"
 #include "stuInfo.h"
 #include "ChartForm.h"
+#include "feedbackStu.h"
 
 namespace ManagementSystemV5 {
 
@@ -367,11 +369,49 @@ namespace ManagementSystemV5 {
 		cF->Show();
 	}
 	private: System::Void exitItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		string strTemp;
+		if (thisLogin->getType() == (int)UserTypeCode::USER_GRADUATE) { //硕士生
+			Graduate *gra = new Graduate();
+			strTemp = gra->getSelfInfo(thisLogin->getId())->getName();
+			delete gra;
+		}
+		else if (thisLogin->getType() == (int)UserTypeCode::USER_UNDERGRADUATE) {
+			Undergraduate *stu = new Undergraduate();
+			strTemp = stu->getSelfInfo(thisLogin->getId())->getName();
+			delete stu;
+		}
+		String ^loginName = gcnew String(strTemp.c_str());
+		if (Application::OpenForms[loginName] != nullptr) //关掉反馈窗体，释放套接字资源
+			Application::OpenForms[loginName]->Close();
 		this->Hide();
 		Application::OpenForms["loginForm1"]->Show();
 	}
 	private: System::Void responseItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("本模块将在第七章进行实现");
+		string strTemp;
+		if (thisLogin->getType() == (int)UserTypeCode::USER_GRADUATE) { //硕士生
+			Graduate *gra = new Graduate();
+			strTemp = gra->getSelfInfo(thisLogin->getId())->getName();
+			delete gra;
+		}
+		else if (thisLogin->getType() == (int)UserTypeCode::USER_UNDERGRADUATE){
+			Undergraduate *stu = new Undergraduate();
+			strTemp = stu->getSelfInfo(thisLogin->getId())->getName();
+			delete stu;
+		}
+		String ^loginName = gcnew String(strTemp.c_str());
+		if (Application::OpenForms[loginName] == nullptr) {
+			feedbackStu ^feed = gcnew feedbackStu();
+			feed->Name = loginName;
+			feed->Text = "反馈信息";
+			feed->MdiParent = this;
+			feed->StartPosition = FormStartPosition::CenterParent;
+			feed->WindowState = FormWindowState::Maximized;
+			feed->Show();
+		}
+		else {
+			while (this->ActiveMdiChild != Application::OpenForms[loginName])
+				this->ActiveMdiChild->Hide();
+		}
 	}
 	private: System::Void stuIndexForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
 		Application::Exit();

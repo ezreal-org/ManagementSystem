@@ -84,6 +84,12 @@
     <ClInclude Include="ChartForm.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="feedbackAdmin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="feedbackStu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="loginForm.resx">

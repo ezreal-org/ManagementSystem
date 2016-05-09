@@ -17,8 +17,10 @@ namespace ManagementSystemV5 {
 	public ref class allCourseArrangement : public System::Windows::Forms::Form
 	{
 	public:
-		allCourseArrangement(void)
+		//5-9 排课表主键改成课程代码+教师工号
+		allCourseArrangement(int type) //根据type确定是新增排课还是修改排课,0代表新增
 		{
+			this->type = type;
 			InitializeComponent();
 			//
 			//TODO: 在此处添加构造函数代码
@@ -36,27 +38,18 @@ namespace ManagementSystemV5 {
 				delete components;
 			}
 		}
+	private: int type;
 	private: System::Windows::Forms::TextBox^  tb_classRoom;
-	protected:
-
-	protected:
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  tb_classTime;
-
 	private: System::Windows::Forms::GroupBox^  groupBox1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Button^  arrangeButton;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::ListBox^  courseArrangementList;
-
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::ComboBox^  comboBox_teacher;
 	private: System::Windows::Forms::Button^  deleteButton;
-
-
-
-
-
 	private:
 		/// <summary>
 		/// 必需的设计器变量。
@@ -209,24 +202,50 @@ namespace ManagementSystemV5 {
 #pragma endregion
 		void initCourseArrangementList()
 		{
-			this->courseArrangementList->Items->Clear();
-			AcademicStaff *staff = new AcademicStaff();
-			string courseName;
-			char courseId[20];
-			cli::array<String ^> ^list = staff->getAllCourseId();
-			for each (String ^a in list) {
-				sprintf(courseId, "%s", a);
-				courseName = staff->readCourseInfo(courseId)->getCourseName();
-				a += " ";
-				a += gcnew String(courseName.c_str());
-				this->courseArrangementList->Items->Add(a);
+			if (!type) { //新增排课
+				this->courseArrangementList->Items->Clear();
+				AcademicStaff *staff = new AcademicStaff();
+				string courseName;
+				char courseId[20];
+				cli::array<String ^> ^list = staff->getAllCourseId();
+				for each (String ^a in list) {
+					sprintf(courseId, "%s", a);
+					courseName = staff->readCourseInfo(courseId)->getCourseName();
+					a += " ";
+					a += gcnew String(courseName.c_str());
+					this->courseArrangementList->Items->Add(a);
+				}
+				delete staff;
 			}
-			delete staff;
+			else {
+				this->courseArrangementList->Items->Clear();
+				AcademicStaff *staff = new AcademicStaff();
+				string courseName;
+				char courseId[20];
+				cli::array<String ^> ^list = staff->readAllCourseArrangementId();
+				for each (String ^a in list) {
+					sprintf(courseId, "%s", a->Substring(0,a->IndexOf(" ")));
+					a += ",";
+					courseName = staff->readCourseInfo(courseId)->getCourseName();
+					a += gcnew String(courseName.c_str());
+					this->courseArrangementList->Items->Add(a);
+				}
+				delete staff;
+			}
+			
 		}
 	private: System::Void allCourseArrangement_Load(System::Object^  sender, System::EventArgs^  e) {
 		//在courseArrangementList显示所以排课表摘要信息
+		if (!type) { //新增
+			this->label1->Text = "课程列表-新增";
+			this->deleteButton->Hide();
+		}
+		else {
+			this->label1->Text = "课程列表-修改";
+			this->deleteButton->Show();
+		}
 		initCourseArrangementList();
-
+		
 		//初始化任课老师下拉选框
 		string teaName;
 		char teacherId[20];
@@ -244,15 +263,22 @@ namespace ManagementSystemV5 {
 
 		delete staff;
 	}
+	// 5-9 排课表主键修改
 	private: System::Void courseArrangementList_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		char courseId[20];
+		if (!type) {  //新增排课时
+			tb_classRoom->Text = "";
+			tb_classTime->Text = "";
+			this->comboBox_teacher->SelectedIndex = 0;
+			return;
+		}
+		char cIdTid[20];
 		string strTemp;
-		String ^selectedCourseId,^teaId;
+		String ^courseIdTeaId,^teaId;
 		AcademicStaff *staff = new AcademicStaff();
 		//获取课程id
-		selectedCourseId = courseArrangementList->SelectedItem->ToString()->Substring(0, courseArrangementList->SelectedItem->ToString()->IndexOf(" "));
-		sprintf(courseId, "%s",selectedCourseId );
-		courseArrangement *p = staff->readCourseArrangement(courseId);
+		courseIdTeaId = courseArrangementList->SelectedItem->ToString()->Substring(0, courseArrangementList->SelectedItem->ToString()->IndexOf(","));
+		sprintf(cIdTid, "%s", courseIdTeaId);
+		courseArrangement *p = staff->readCourseArrangement(cIdTid);
 		//初始化任课老师Combox
 		this->comboBox_teacher->SelectedIndex = 0;
 		tb_classRoom->Text = "";
@@ -292,11 +318,12 @@ namespace ManagementSystemV5 {
 		}
 		delete staff, p;
 	}
+	// 5-9 修改排课表主键
 	private: System::Void deleteButton_Click(System::Object^  sender, System::EventArgs^  e) {
-		char courseId[20];
-		sprintf(courseId, "%s", courseArrangementList->SelectedItem->ToString()->Substring(0, courseArrangementList->SelectedItem->ToString()->IndexOf(" ")));
+		char cIdTid[20];
+		sprintf(cIdTid, "%s", courseArrangementList->SelectedItem->ToString()->Substring(0, courseArrangementList->SelectedItem->ToString()->IndexOf(",")));
 		AcademicStaff *staff = new AcademicStaff();
-		if (staff->deleteCourseArrangement(courseId)) {
+		if (staff->deleteCourseArrangement(cIdTid)) {
 			MessageBox::Show("删除成功...");
 			tb_classRoom->Text = "";
 			tb_classTime->Text = "";

@@ -241,6 +241,13 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.writeCourseArrangement(p);
 		}
+		// 5-9 修改排课表主键
+		//获取所有排课表(courseId+teacherId)主键
+		cli::array<String^>^ readAllCourseArrangementId()
+		{
+			Storage storage;
+			return storage.readAllCourseArrangementId();
+		}
 		//获取某个学生某门选课的信息
 		selectedCourse* getSelectedCourseInfo(char *cIdAndsId)
 		{
@@ -314,19 +321,21 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.readCourse(id);
 		}
+		//5-9 排课表主键改为课程ID + 教师ID
 		//获得所有自己教授课程代码
 		cli::array<String^>^ getSelfTeachCourseCode(char *teaId)
 		{
 			vector<string> vCourseId;
 			Storage storage;
-			char courseCode[20], teacherId[20];
+			char courseIdTeacherId[40], teacherId[20],courseId[20];
 			cli::array<String^>^ list = storage.readAllCourseArrangementId(); //读排课表
 			for each(String^ item in list) //从所有课程表中筛选出任课教师id为teaId的课程
 			{
-				sprintf(courseCode, "%s", item);
-				strcpy(teacherId, storage.readCourseArrangement(courseCode)->getTeacherId());
+				sprintf(courseIdTeacherId, "%s", item);
+				sprintf(courseId, "%s", item->Substring(0,item->IndexOf(" ")));
+				strcpy(teacherId, storage.readCourseArrangement(courseIdTeacherId)->getTeacherId());
 				if (strcmp(teaId, teacherId) == 0)
-					vCourseId.push_back(courseCode);
+					vCourseId.push_back(courseId);
 			}
 			cli::array<String^>^ retList = gcnew cli::array<String^>(vCourseId.size());
 			for (int i = 0; i < vCourseId.size(); i++) // string[] -> String[]
@@ -410,7 +419,7 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.readCourse(idName);
 		}
-
+		//读排课表
 		courseArrangement* readCourseArrangement(char *id)
 		{
 			Storage storage;
