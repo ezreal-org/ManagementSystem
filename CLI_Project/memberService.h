@@ -107,7 +107,7 @@ namespace ManagementSystemV5 {
 			return storage.readMajor(id);
 		}
 		//删除专业
-		bool deleteMajor(char *id){
+		bool deleteMajor(char *id) {
 			Storage storage;
 			return storage.deleteMajor(id);
 		}
@@ -160,7 +160,7 @@ namespace ManagementSystemV5 {
 			return storage.readAllCourseId();
 		}
 		//获取所有教师id
-		cli::array<String ^>^ getAllTeacherId() { 
+		cli::array<String ^>^ getAllTeacherId() {
 			Storage storage;
 			vector<string> vstaffId;
 			ifstream input;
@@ -231,7 +231,7 @@ namespace ManagementSystemV5 {
 			return storage.readCourseArrangement(id);
 		}
 		//删除排课记录
-		bool deleteCourseArrangement(char *id){
+		bool deleteCourseArrangement(char *id) {
 			Storage storage;
 			return storage.deleteCourseArrangement(id);
 		}
@@ -266,7 +266,7 @@ namespace ManagementSystemV5 {
 				if (p->getType() == (int)UserTypeCode::USER_GRADUATE) {
 					sprintf(majorName, "%s", storage.readGraduateInfo(stuId)->getMajor());
 				}
-				else if(p->getType() == (int)UserTypeCode::USER_UNDERGRADUATE){
+				else if (p->getType() == (int)UserTypeCode::USER_UNDERGRADUATE) {
 					sprintf(majorName, "%s", storage.readUndergradateInfo(stuId)->getMajor());
 				}
 				else {
@@ -371,7 +371,7 @@ namespace ManagementSystemV5 {
 			StudentTable *p = nullptr; //学生基类指针
 			if (type == (int)UserTypeCode::USER_GRADUATE)
 				p = storage.readGraduateInfo(id);
-			else if(type == (int)UserTypeCode::USER_UNDERGRADUATE)
+			else if (type == (int)UserTypeCode::USER_UNDERGRADUATE)
 				p = storage.readUndergradateInfo(id);
 			return p;
 		}

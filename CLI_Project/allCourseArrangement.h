@@ -281,13 +281,13 @@ namespace ManagementSystemV5 {
 	}
 	private: System::Void arrangeButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		char courseId[50];
-		char classRoom[50], classTime[20],teacherId[20];
+		char classRoom[50], classTime[20], teacherId[20];
 		sprintf(courseId, "%s", courseArrangementList->SelectedItem->ToString()->Substring(0, courseArrangementList->SelectedItem->ToString()->IndexOf(" ")));
 		AcademicStaff *staff = new AcademicStaff();
 		courseArrangement *p = new courseArrangement();
 		sprintf(classRoom, "%s", tb_classRoom->Text);
 		sprintf(classTime, "%s", tb_classTime->Text);
-		sprintf(teacherId, "%s", comboBox_teacher->SelectedItem->ToString()->Substring(0,comboBox_teacher->SelectedItem->ToString()->IndexOf("_")));
+		sprintf(teacherId, "%s", comboBox_teacher->SelectedItem->ToString()->Substring(0, comboBox_teacher->SelectedItem->ToString()->IndexOf("_")));
 		p->setClassRoom(classRoom);
 		p->setTime(classTime);
 		p->setCourseId(courseId);
@@ -310,5 +310,5 @@ namespace ManagementSystemV5 {
 		initCourseArrangementList(); //更新排课列表
 		delete staff;
 	}
-};
+	};
 }

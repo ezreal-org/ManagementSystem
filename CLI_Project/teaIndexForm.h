@@ -1,6 +1,9 @@
 #pragma once
 #include "addNewCourse.h"
 #include "recordGrade.h"
+#include "memberInfo.h"
+#include "memberService.h"
+#include "updatePasswd.h"
 
 namespace ManagementSystemV5 {
 
@@ -38,17 +41,31 @@ namespace ManagementSystemV5 {
 			}
 		}
 	private: UserTable *thisLogin;
+	private: System::Windows::Forms::MenuStrip^  teaIndexMenu;
+	private: System::Windows::Forms::ToolStripMenuItem^  selfInfoItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  resetPSItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  allSelfInfoItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  courseArrangeItem;
 
-	private: System::Windows::Forms::Button^  recordGradeButton;
-	private: System::Windows::Forms::Button^  checkAllGradeButton;
-	private: System::Windows::Forms::Button^  exitButton;
-	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::ToolStripMenuItem^  recordGradeItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  helpItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  aboutSysItem;
+	private: System::Windows::Forms::StatusStrip^  statusStrip1;
+	private: System::Windows::Forms::ToolStripStatusLabel^  nowDate;
+	private: System::Windows::Forms::ToolStripStatusLabel^  nowTime;
+	private: System::Windows::Forms::ToolStripStatusLabel^  toolStripStatusLabel2;
+	private: System::Windows::Forms::Timer^  timer1;
+	private: System::Windows::Forms::ToolStripMenuItem^  exit;
 
+	private: System::Windows::Forms::ToolStripSeparator^  toolStripSeparator1;
+	private: System::Windows::Forms::ToolStripMenuItem^  成绩管理ToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  checkAllGradeItem;
+	private: System::ComponentModel::IContainer^  components;
 	private:
 		/// <summary>
 		/// 必需的设计器变量。
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -57,94 +74,235 @@ namespace ManagementSystemV5 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->recordGradeButton = (gcnew System::Windows::Forms::Button());
-			this->checkAllGradeButton = (gcnew System::Windows::Forms::Button());
-			this->exitButton = (gcnew System::Windows::Forms::Button());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->components = (gcnew System::ComponentModel::Container());
+			this->teaIndexMenu = (gcnew System::Windows::Forms::MenuStrip());
+			this->selfInfoItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->resetPSItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->allSelfInfoItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->courseArrangeItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->recordGradeItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripSeparator1 = (gcnew System::Windows::Forms::ToolStripSeparator());
+			this->helpItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->aboutSysItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->exit = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->成绩管理ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->checkAllGradeItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->statusStrip1 = (gcnew System::Windows::Forms::StatusStrip());
+			this->nowDate = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+			this->toolStripStatusLabel2 = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+			this->nowTime = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->teaIndexMenu->SuspendLayout();
+			this->statusStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// recordGradeButton
+			// teaIndexMenu
 			// 
-			this->recordGradeButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->teaIndexMenu->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+				this->selfInfoItem, this->courseArrangeItem,
+					this->成绩管理ToolStripMenuItem, this->helpItem
+			});
+			this->teaIndexMenu->Location = System::Drawing::Point(0, 0);
+			this->teaIndexMenu->Name = L"teaIndexMenu";
+			this->teaIndexMenu->Size = System::Drawing::Size(714, 28);
+			this->teaIndexMenu->TabIndex = 0;
+			this->teaIndexMenu->Text = L"teaIndexMenu";
+			// 
+			// selfInfoItem
+			// 
+			this->selfInfoItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->resetPSItem,
+					this->allSelfInfoItem
+			});
+			this->selfInfoItem->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(134)));
-			this->recordGradeButton->Location = System::Drawing::Point(54, 41);
-			this->recordGradeButton->Name = L"recordGradeButton";
-			this->recordGradeButton->Size = System::Drawing::Size(142, 36);
-			this->recordGradeButton->TabIndex = 3;
-			this->recordGradeButton->Text = L"录入成绩";
-			this->recordGradeButton->UseVisualStyleBackColor = true;
-			this->recordGradeButton->Click += gcnew System::EventHandler(this, &teaIndexForm::recordGradeButton_Click);
+			this->selfInfoItem->Name = L"selfInfoItem";
+			this->selfInfoItem->Size = System::Drawing::Size(85, 24);
+			this->selfInfoItem->Text = L"个人中心";
 			// 
-			// checkAllGradeButton
+			// resetPSItem
 			// 
-			this->checkAllGradeButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, 
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(134)));
-			this->checkAllGradeButton->Location = System::Drawing::Point(263, 41);
-			this->checkAllGradeButton->Name = L"checkAllGradeButton";
-			this->checkAllGradeButton->Size = System::Drawing::Size(142, 36);
-			this->checkAllGradeButton->TabIndex = 4;
-			this->checkAllGradeButton->Text = L"成绩分布";
-			this->checkAllGradeButton->UseVisualStyleBackColor = true;
-			this->checkAllGradeButton->Click += gcnew System::EventHandler(this, &teaIndexForm::checkAllGradeButton_Click);
+			this->resetPSItem->Name = L"resetPSItem";
+			this->resetPSItem->Size = System::Drawing::Size(174, 24);
+			this->resetPSItem->Text = L"修改密码";
+			this->resetPSItem->Click += gcnew System::EventHandler(this, &teaIndexForm::resetPSItem_Click);
 			// 
-			// exitButton
+			// allSelfInfoItem
 			// 
-			this->exitButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->allSelfInfoItem->Name = L"allSelfInfoItem";
+			this->allSelfInfoItem->Size = System::Drawing::Size(174, 24);
+			this->allSelfInfoItem->Text = L"查询个人信息";
+			this->allSelfInfoItem->Click += gcnew System::EventHandler(this, &teaIndexForm::allSelfInfoItem_Click);
+			// 
+			// courseArrangeItem
+			// 
+			this->courseArrangeItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->recordGradeItem,
+					this->toolStripSeparator1
+			});
+			this->courseArrangeItem->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(134)));
-			this->exitButton->Location = System::Drawing::Point(465, 41);
-			this->exitButton->Name = L"exitButton";
-			this->exitButton->Size = System::Drawing::Size(142, 36);
-			this->exitButton->TabIndex = 5;
-			this->exitButton->Text = L"注销";
-			this->exitButton->UseVisualStyleBackColor = true;
-			this->exitButton->Click += gcnew System::EventHandler(this, &teaIndexForm::exitButton_Click);
+			this->courseArrangeItem->Name = L"courseArrangeItem";
+			this->courseArrangeItem->Size = System::Drawing::Size(85, 24);
+			this->courseArrangeItem->Text = L"课程管理";
 			// 
-			// label1
+			// recordGradeItem
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(575, 9);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(41, 12);
-			this->label1->TabIndex = 6;
-			this->label1->Text = L"label1";
+			this->recordGradeItem->Name = L"recordGradeItem";
+			this->recordGradeItem->Size = System::Drawing::Size(152, 24);
+			this->recordGradeItem->Text = L"成绩录入";
+			this->recordGradeItem->Click += gcnew System::EventHandler(this, &teaIndexForm::recordGradeItem_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this->toolStripSeparator1->Name = L"toolStripSeparator1";
+			this->toolStripSeparator1->Size = System::Drawing::Size(149, 6);
+			// 
+			// helpItem
+			// 
+			this->helpItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->aboutSysItem,
+					this->exit
+			});
+			this->helpItem->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->helpItem->Name = L"helpItem";
+			this->helpItem->Size = System::Drawing::Size(53, 24);
+			this->helpItem->Text = L"帮助";
+			// 
+			// aboutSysItem
+			// 
+			this->aboutSysItem->Name = L"aboutSysItem";
+			this->aboutSysItem->Size = System::Drawing::Size(142, 24);
+			this->aboutSysItem->Text = L"关于系统";
+			this->aboutSysItem->Click += gcnew System::EventHandler(this, &teaIndexForm::aboutSysItem_Click);
+			// 
+			// exit
+			// 
+			this->exit->Name = L"exit";
+			this->exit->Size = System::Drawing::Size(142, 24);
+			this->exit->Text = L"注销";
+			this->exit->Click += gcnew System::EventHandler(this, &teaIndexForm::exit_Click);
+			// 
+			// 成绩管理ToolStripMenuItem
+			// 
+			this->成绩管理ToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->checkAllGradeItem });
+			this->成绩管理ToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+			this->成绩管理ToolStripMenuItem->Name = L"成绩管理ToolStripMenuItem";
+			this->成绩管理ToolStripMenuItem->Size = System::Drawing::Size(85, 24);
+			this->成绩管理ToolStripMenuItem->Text = L"成绩管理";
+			// 
+			// checkAllGradeItem
+			// 
+			this->checkAllGradeItem->Name = L"checkAllGradeItem";
+			this->checkAllGradeItem->Size = System::Drawing::Size(152, 22);
+			this->checkAllGradeItem->Text = L"成绩统计";
+			this->checkAllGradeItem->Click += gcnew System::EventHandler(this, &teaIndexForm::checkAllGradeItem_Click);
+			// 
+			// statusStrip1
+			// 
+			this->statusStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->nowDate, this->toolStripStatusLabel2,
+					this->nowTime
+			});
+			this->statusStrip1->Location = System::Drawing::Point(0, 295);
+			this->statusStrip1->Name = L"statusStrip1";
+			this->statusStrip1->Size = System::Drawing::Size(714, 22);
+			this->statusStrip1->TabIndex = 1;
+			this->statusStrip1->Text = L"statusStrip1";
+			// 
+			// nowDate
+			// 
+			this->nowDate->Name = L"nowDate";
+			this->nowDate->Size = System::Drawing::Size(32, 17);
+			this->nowDate->Text = L"日期";
+			// 
+			// toolStripStatusLabel2
+			// 
+			this->toolStripStatusLabel2->Name = L"toolStripStatusLabel2";
+			this->toolStripStatusLabel2->Size = System::Drawing::Size(0, 17);
+			// 
+			// nowTime
+			// 
+			this->nowTime->Name = L"nowTime";
+			this->nowTime->Size = System::Drawing::Size(32, 17);
+			this->nowTime->Text = L"时间";
+			// 
+			// timer1
+			// 
+			this->timer1->Enabled = true;
+			this->timer1->Tick += gcnew System::EventHandler(this, &teaIndexForm::timer1_Tick);
 			// 
 			// teaIndexForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(693, 128);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->exitButton);
-			this->Controls->Add(this->checkAllGradeButton);
-			this->Controls->Add(this->recordGradeButton);
+			this->ClientSize = System::Drawing::Size(714, 317);
+			this->Controls->Add(this->statusStrip1);
+			this->Controls->Add(this->teaIndexMenu);
+			this->IsMdiContainer = true;
+			this->MainMenuStrip = this->teaIndexMenu;
 			this->Name = L"teaIndexForm";
-			this->Text = L"简易教务管理系统 - 教师端";
+			this->Text = L"简易教务管理系统-教师端";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &teaIndexForm::teaIndexForm_FormClosing);
-			this->Load += gcnew System::EventHandler(this, &teaIndexForm::teaIndexForm_Load);
+			this->teaIndexMenu->ResumeLayout(false);
+			this->teaIndexMenu->PerformLayout();
+			this->statusStrip1->ResumeLayout(false);
+			this->statusStrip1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void recordGradeButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
+		DateTime monment = DateTime::Now;
+		int year = monment.Year;
+		int mon = monment.Month;
+		int date = monment.Day;
+
+		int h = monment.Hour;
+		int m = monment.Minute;
+		int s = monment.Second;
+
+		String ^ dateStr = "当前时间：" + year.ToString() + "-" + mon.ToString() + "-" + date.ToString() + "  ";
+		String ^ timeStr = (h % 12).ToString() + ":" + m.ToString() + ":" + s.ToString();
+		this->nowDate->Text = dateStr;
+		this->nowTime->Text = timeStr;
+	}
+	private: System::Void resetPSItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		updatePasswd ^update = gcnew updatePasswd(thisLogin);
+		update->Name = "updatePasswd";
+		update->MdiParent = this;
+		update->StartPosition = FormStartPosition::CenterParent;
+		update->WindowState = FormWindowState::Maximized;
+		update->Show();
+	}
+	private: System::Void aboutSysItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		HelpInfo ^help = gcnew HelpInfo();
+		help->StartPosition = FormStartPosition::CenterScreen;
+		help->Name = "help";
+		help->Show();
+	}
+	private: System::Void allSelfInfoItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		MessageBox::Show("参见学生查询个人信息");
+	}
+	private: System::Void recordGradeItem_Click(System::Object^  sender, System::EventArgs^  e) {
 		recordGrade ^record = gcnew recordGrade(thisLogin);
+		record->Name = "record";
+		record->MdiParent = this;
+		record->StartPosition = FormStartPosition::CenterParent;
+		record->WindowState = FormWindowState::Maximized;
 		record->Show();
-			 }
-	private: System::Void teaIndexForm_Load(System::Object^  sender, System::EventArgs^  e) {
-		string strTemp;
-		strTemp = thisLogin->getId();
-		this->label1->Text = "欢迎 ";
-		this->label1->Text += gcnew String(strTemp.c_str());
-			 }
-private: System::Void teaIndexForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
-	Application::Exit();
-}
-private: System::Void exitButton_Click(System::Object^  sender, System::EventArgs^  e) {
-	Application::OpenForms["loginForm1"]->Show();
-	this->Hide();
-}
-private: System::Void checkAllGradeButton_Click(System::Object^  sender, System::EventArgs^  e) {
-		  MessageBox::Show("本模块将在后续章节实现");
-		 }
-};
+	}
+	private: System::Void exit_Click(System::Object^  sender, System::EventArgs^  e) {
+		this->Hide();
+		Application::OpenForms["loginForm1"]->Show();
+	}
+	private: System::Void teaIndexForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+		Application::Exit();
+	}
+	private: System::Void checkAllGradeItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		MessageBox::Show("该模块将在后续章节案例中讲解");
+	}
+	};
 }

@@ -184,7 +184,7 @@ namespace ManagementSystemV5 {
 	private: System::Void submitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		String ^idStr;
 		char id[20];
-		int successCount=0;
+		int successCount = 0;
 		for (int i = 0; i<coursesNeededSelectedList->CheckedIndices->Count; i++) {
 			idStr = coursesNeededSelectedList->Items[coursesNeededSelectedList->CheckedIndices[i]]->ToString();
 			idStr = idStr->Substring(0, idStr->IndexOf(" "));

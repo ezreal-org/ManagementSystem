@@ -9,7 +9,7 @@ using namespace std;
 namespace ManagementSystemV5 {
 	using namespace System;
 	using namespace System::IO;
-	public ref class Storage{
+	public ref class Storage {
 	public:
 		//登录
 		UserTable* login(char* id, char* passwd, LoginUserType type) //不同type对应不同类型用户登录文件
@@ -38,7 +38,7 @@ namespace ManagementSystemV5 {
 				UserTable *p = new UserTable();
 				p = readLoginInfo(id);
 				if (!p) return nullptr; //用户名不存在
-				//登录界面没有区分硕士生/本科生type未知(-1)，校验用户名密码是否一致，教务员/教师校验类型
+										//登录界面没有区分硕士生/本科生type未知(-1)，校验用户名密码是否一致，教务员/教师校验类型
 				if (strcmp(p->getPasswd(), passwd) == 0 && (p->getType() == (int)type || type == LoginUserType::LOGIN_STUDENT)) {
 					return p;
 				}
@@ -166,7 +166,7 @@ namespace ManagementSystemV5 {
 		{
 			fstream f;
 			char path[100];
-			sprintf(path, "C:\\managementSystem\\courseArrangement\\%s %s.dat", p->getCourseId(),p->getTeacherId());
+			sprintf(path, "C:\\managementSystem\\courseArrangement\\%s %s.dat", p->getCourseId(), p->getTeacherId());
 			f.open(path, ios::out | ios::binary);
 			if (!f) { MessageBox::Show("文件读写异常!"); f.close(); return false; }
 			f.write((char*)p, sizeof(courseArrangement));
@@ -317,7 +317,7 @@ namespace ManagementSystemV5 {
 			char path[100];
 			sprintf(path, "C:\\managementSystem\\stu\\undergraduate\\%s.dat", id);
 			f.open(path, ios::in | ios::binary);
-			if (!f) {  f.close(); return nullptr; }
+			if (!f) { f.close(); return nullptr; }
 			f.read((char*)p1, sizeof(UndergraduateTable));
 			f.close();
 			return p1;
@@ -351,14 +351,14 @@ namespace ManagementSystemV5 {
 			String ^dir;
 			if (type == (int)UserTypeCode::USER_GRADUATE)			//硕士生
 				dir = "C:\\managementSystem\\stu\\graduate\\";
-			else if(type == (int)UserTypeCode::USER_UNDERGRADUATE)
+			else if (type == (int)UserTypeCode::USER_UNDERGRADUATE)
 				dir = "C:\\managementSystem\\stu\\undergraduate\\";
 			String^ pattern = "*.dat";
 			try {
 				IO::DirectoryInfo ^directoryInfo = gcnew DirectoryInfo(dir);
 				cli::array<FileInfo^>^fileCollection = directoryInfo->GetFiles(pattern);
 				cli::array<String^>^ retString = gcnew cli::array<String^>(fileCollection->Length);
-				for (int i = 0; i < fileCollection->Length; i++){
+				for (int i = 0; i < fileCollection->Length; i++) {
 					retString[i] = fileCollection[i]->Name->Substring(0, fileCollection[i]->Name->IndexOf("."));
 				}
 				return retString;
@@ -383,7 +383,7 @@ namespace ManagementSystemV5 {
 			catch (System::ArgumentException^) {
 				MessageBox::Show("文件读写异常!"); return nullptr;
 			}
-			
+
 		}
 		cli::array<String^>^ readAllMajorId()
 		{
@@ -403,7 +403,7 @@ namespace ManagementSystemV5 {
 				MessageBox::Show("文件读写异常！");
 				return nullptr;
 			}
-			
+
 		}
 		//读所有排课表id
 		cli::array<String^>^ readAllCourseArrangementId()
@@ -434,7 +434,7 @@ namespace ManagementSystemV5 {
 				IO::DirectoryInfo ^directoryInfo = gcnew DirectoryInfo(dir);
 				cli::array<FileInfo^>^fileCollection = directoryInfo->GetFiles(pattern);
 				cli::array<String^>^ retString = gcnew cli::array<String^>(fileCollection->Length);
-				for (int i = 0; i < fileCollection->Length; i++){
+				for (int i = 0; i < fileCollection->Length; i++) {
 					retString[i] = fileCollection[i]->Name->Substring(0, fileCollection[i]->Name->IndexOf("."));
 				}
 				return retString;
@@ -464,5 +464,5 @@ namespace ManagementSystemV5 {
 			}
 		}
 	};
-	
+
 }
