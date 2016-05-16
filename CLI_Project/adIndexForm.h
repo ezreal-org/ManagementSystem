@@ -3,17 +3,13 @@
 #include "stuList.h"
 #include "addMajor.h"
 #include "allMajor.h"
-#include "HelpInfo.h"
 #include "updatePasswd.h"
 #include "allCourseArrangement.h"
 #include "addNewCourse.h"
 #include "allCourse.h"
-#include "ChartForm.h"
-#include "feedbackAdmin.h"
 
 namespace ManagementSystemV5 {
 
-#pragma once
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -22,562 +18,357 @@ namespace ManagementSystemV5 {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// adFormNew 摘要
+	/// adIndexForm 晡猁
 	/// </summary>
 	public ref class adIndexForm : public System::Windows::Forms::Form
 	{
 	public:
 		adIndexForm(UserTable* login)
 		{
+			this->thisLogin = login;
 			InitializeComponent();
 			//
-			//TODO:  在此处添加构造函数代码
+			//TODO:  婓森揭氝樓凳婖滲杅測鎢
 			//
-			this->thisLogin = login;
-			canQuit = false;
-			timer1->Start();
-			this->IsMdiContainer = true;
-			this->StartPosition = FormStartPosition::CenterScreen;
 		}
 
 	protected:
 		/// <summary>
-		/// 清理所有正在使用的资源。
+		/// ?燴垀衄淏婓妏蚚腔訧埭﹝
 		/// </summary>
 		~adIndexForm()
 		{
 			if (components)
 			{
-				delete components;
+			//	delete components;
 			}
 		}
-	private: UserTable* thisLogin;
-	private: bool canQuit;
-	private: System::Windows::Forms::StatusStrip^  statusStrip1;
-	private: System::Windows::Forms::ToolStripStatusLabel^  NowDate;
-	private: System::Windows::Forms::ToolStripStatusLabel^  toolStripStatusLabel2;
-	private: System::Windows::Forms::ToolStripStatusLabel^  NowTime;
-	private: System::Windows::Forms::Timer^  timer1;
-	private: System::Windows::Forms::NotifyIcon^  notifyIcon1;
-	private: System::Windows::Forms::ContextMenuStrip^  contextMenuStrip1;
-	private: System::Windows::Forms::ToolStripMenuItem^  show;
-	private: System::Windows::Forms::ToolStripMenuItem^  quit;
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::ToolStripMenuItem^  selfInfoItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  resetPSItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  allSelfInfoItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  专业与学生ToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  addNewMajorItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  allMajorsInfoItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  addStuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  学生注册ToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  allStusItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  courseManageItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  courseArrange;
-	private: System::Windows::Forms::ToolStripMenuItem^  addCourse;
-	private: System::Windows::Forms::ToolStripMenuItem^  成绩管理ToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  checkGradeItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  helpItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  msgItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  aboutSysItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  exitItem;
-	private: System::Windows::Forms::MenuStrip^  adIndexMenu;
-	private: System::Windows::Forms::ToolStripMenuItem^  modifyArrangement;
-	private: System::Windows::Forms::ToolStripMenuItem^  showAllCourse;
-	private: System::Windows::Forms::ToolStripSeparator^  toolStripSeparator1;
-	private: System::ComponentModel::IContainer^  components;
+	private: UserTable *thisLogin;
+	private: System::Windows::Forms::Label^  welLabel;
+	private: System::Windows::Forms::Button^  addStuButton;
+	private: System::Windows::Forms::Button^  allStuButton;
+	private: System::Windows::Forms::Button^  allCourseButton;
+
+
+
+	private: System::Windows::Forms::Button^  addMajorButton;
+	private: System::Windows::Forms::Button^  resetPSButton;
+	private: System::Windows::Forms::Button^  allMajorButton;
+	private: System::Windows::Forms::Button^  selfInfoButton;
+	private: System::Windows::Forms::Button^  exitButton;
+	private: System::Windows::Forms::Button^  msgResponseButton;
+	private: System::Windows::Forms::Button^  aboutSysButton;
+	private: System::Windows::Forms::Button^  courseArrangementButton;
+	private: System::Windows::Forms::Button^  addCourseButton;
+
+
+
+
+
+
+
+
 	private:
 		/// <summary>
-		/// 必需的设计器变量。
+		/// 斛剒腔扢數?曹講﹝
 		/// </summary>
+		System::ComponentModel::Container ^components;
+
+
+		//暮翹絞?腔蚚誧
+	public:
+
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// 设计器支持所需的方法 - 不要修改
-		/// 使用代码编辑器修改此方法的内容。
+		/// 扢數?盓厥垀剒腔源楊 - 祥猁党蜊
+		/// 妏蚚測鎢晤憮?党蜊森源楊腔囀?﹝
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = (gcnew System::ComponentModel::Container());
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(adIndexForm::typeid));
-			this->statusStrip1 = (gcnew System::Windows::Forms::StatusStrip());
-			this->NowDate = (gcnew System::Windows::Forms::ToolStripStatusLabel());
-			this->toolStripStatusLabel2 = (gcnew System::Windows::Forms::ToolStripStatusLabel());
-			this->NowTime = (gcnew System::Windows::Forms::ToolStripStatusLabel());
-			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->notifyIcon1 = (gcnew System::Windows::Forms::NotifyIcon(this->components));
-			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
-			this->show = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->quit = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->selfInfoItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->resetPSItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->allSelfInfoItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->专业与学生ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->addNewMajorItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->allMajorsInfoItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->addStuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->学生注册ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->allStusItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->courseManageItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->courseArrange = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->modifyArrangement = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->addCourse = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->showAllCourse = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->成绩管理ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->checkGradeItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->helpItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->msgItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->aboutSysItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->exitItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->adIndexMenu = (gcnew System::Windows::Forms::MenuStrip());
-			this->toolStripSeparator1 = (gcnew System::Windows::Forms::ToolStripSeparator());
-			this->statusStrip1->SuspendLayout();
-			this->contextMenuStrip1->SuspendLayout();
-			this->adIndexMenu->SuspendLayout();
+			this->welLabel = (gcnew System::Windows::Forms::Label());
+			this->addStuButton = (gcnew System::Windows::Forms::Button());
+			this->allStuButton = (gcnew System::Windows::Forms::Button());
+			this->allCourseButton = (gcnew System::Windows::Forms::Button());
+			this->addMajorButton = (gcnew System::Windows::Forms::Button());
+			this->resetPSButton = (gcnew System::Windows::Forms::Button());
+			this->allMajorButton = (gcnew System::Windows::Forms::Button());
+			this->selfInfoButton = (gcnew System::Windows::Forms::Button());
+			this->exitButton = (gcnew System::Windows::Forms::Button());
+			this->msgResponseButton = (gcnew System::Windows::Forms::Button());
+			this->aboutSysButton = (gcnew System::Windows::Forms::Button());
+			this->courseArrangementButton = (gcnew System::Windows::Forms::Button());
+			this->addCourseButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// statusStrip1
+			// welLabel
 			// 
-			this->statusStrip1->ImageScalingSize = System::Drawing::Size(32, 32);
-			this->statusStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
-				this->NowDate, this->toolStripStatusLabel2,
-					this->NowTime
-			});
-			this->statusStrip1->Location = System::Drawing::Point(0, 295);
-			this->statusStrip1->Name = L"statusStrip1";
-			this->statusStrip1->Size = System::Drawing::Size(702, 22);
-			this->statusStrip1->TabIndex = 1;
-			this->statusStrip1->Text = L"statusStrip1";
+			this->welLabel->AutoSize = true;
+			this->welLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->welLabel->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			this->welLabel->Location = System::Drawing::Point(44, 26);
+			this->welLabel->Margin = System::Windows::Forms::Padding(6, 0, 6, 0);
+			this->welLabel->Name = L"welLabel";
+			this->welLabel->Size = System::Drawing::Size(96, 44);
+			this->welLabel->TabIndex = 0;
+			this->welLabel->Text = L"欢迎";
 			// 
-			// NowDate
+			// addStuButton
 			// 
-			this->NowDate->Name = L"NowDate";
-			this->NowDate->Size = System::Drawing::Size(32, 17);
-			this->NowDate->Text = L"日期";
+			this->addStuButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->addStuButton->Location = System::Drawing::Point(52, 136);
+			this->addStuButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->addStuButton->Name = L"addStuButton";
+			this->addStuButton->Size = System::Drawing::Size(284, 72);
+			this->addStuButton->TabIndex = 1;
+			this->addStuButton->Text = L"添加学生";
+			this->addStuButton->UseVisualStyleBackColor = true;
+			this->addStuButton->Click += gcnew System::EventHandler(this, &adIndexForm::button1_Click);
 			// 
-			// toolStripStatusLabel2
+			// allStuButton
 			// 
-			this->toolStripStatusLabel2->Name = L"toolStripStatusLabel2";
-			this->toolStripStatusLabel2->Size = System::Drawing::Size(0, 17);
+			this->allStuButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->allStuButton->Location = System::Drawing::Point(398, 138);
+			this->allStuButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->allStuButton->Name = L"allStuButton";
+			this->allStuButton->Size = System::Drawing::Size(284, 70);
+			this->allStuButton->TabIndex = 2;
+			this->allStuButton->Text = L"所有学生";
+			this->allStuButton->UseVisualStyleBackColor = true;
+			this->allStuButton->Click += gcnew System::EventHandler(this, &adIndexForm::button2_Click);
 			// 
-			// NowTime
+			// allCourseButton
 			// 
-			this->NowTime->Name = L"NowTime";
-			this->NowTime->Size = System::Drawing::Size(32, 17);
-			this->NowTime->Text = L"时间";
+			this->allCourseButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->allCourseButton->Location = System::Drawing::Point(52, 290);
+			this->allCourseButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->allCourseButton->Name = L"allCourseButton";
+			this->allCourseButton->Size = System::Drawing::Size(284, 72);
+			this->allCourseButton->TabIndex = 4;
+			this->allCourseButton->Text = L"所有课程";
+			this->allCourseButton->UseVisualStyleBackColor = true;
+			this->allCourseButton->Click += gcnew System::EventHandler(this, &adIndexForm::allCourseButton_Click);
 			// 
-			// timer1
+			// addMajorButton
 			// 
-			this->timer1->Tick += gcnew System::EventHandler(this, &adIndexForm::timer1_Tick);
+			this->addMajorButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->addMajorButton->Location = System::Drawing::Point(764, 138);
+			this->addMajorButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->addMajorButton->Name = L"addMajorButton";
+			this->addMajorButton->Size = System::Drawing::Size(284, 72);
+			this->addMajorButton->TabIndex = 5;
+			this->addMajorButton->Text = L"新增专业";
+			this->addMajorButton->UseVisualStyleBackColor = true;
+			this->addMajorButton->Click += gcnew System::EventHandler(this, &adIndexForm::addMajorButton_Click);
 			// 
-			// notifyIcon1
+			// resetPSButton
 			// 
-			this->notifyIcon1->ContextMenuStrip = this->contextMenuStrip1;
-			this->notifyIcon1->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"notifyIcon1.Icon")));
-			this->notifyIcon1->Text = L"notifyIcon1";
-			this->notifyIcon1->Visible = true;
-			this->notifyIcon1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &adIndexForm::notifyIcon1_MouseClick);
+			this->resetPSButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->resetPSButton->Location = System::Drawing::Point(398, 290);
+			this->resetPSButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->resetPSButton->Name = L"resetPSButton";
+			this->resetPSButton->Size = System::Drawing::Size(284, 72);
+			this->resetPSButton->TabIndex = 6;
+			this->resetPSButton->Text = L"密码修改";
+			this->resetPSButton->UseVisualStyleBackColor = true;
+			this->resetPSButton->Click += gcnew System::EventHandler(this, &adIndexForm::resetPSButton_Click);
 			// 
-			// contextMenuStrip1
+			// allMajorButton
 			// 
-			this->contextMenuStrip1->ImageScalingSize = System::Drawing::Size(32, 32);
-			this->contextMenuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) { this->show, this->quit });
-			this->contextMenuStrip1->Name = L"contextMenuStrip1";
-			this->contextMenuStrip1->Size = System::Drawing::Size(137, 48);
+			this->allMajorButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->allMajorButton->Location = System::Drawing::Point(1112, 138);
+			this->allMajorButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->allMajorButton->Name = L"allMajorButton";
+			this->allMajorButton->Size = System::Drawing::Size(284, 72);
+			this->allMajorButton->TabIndex = 7;
+			this->allMajorButton->Text = L"所有专业";
+			this->allMajorButton->UseVisualStyleBackColor = true;
+			this->allMajorButton->Click += gcnew System::EventHandler(this, &adIndexForm::allMajorButton_Click);
 			// 
-			// show
+			// selfInfoButton
 			// 
-			this->show->Name = L"show";
-			this->show->Size = System::Drawing::Size(136, 22);
-			this->show->Text = L"显示主界面";
-			this->show->Click += gcnew System::EventHandler(this, &adIndexForm::show_Click);
+			this->selfInfoButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->selfInfoButton->Location = System::Drawing::Point(764, 290);
+			this->selfInfoButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->selfInfoButton->Name = L"selfInfoButton";
+			this->selfInfoButton->Size = System::Drawing::Size(284, 72);
+			this->selfInfoButton->TabIndex = 8;
+			this->selfInfoButton->Text = L"个人信息";
+			this->selfInfoButton->UseVisualStyleBackColor = true;
+			this->selfInfoButton->Click += gcnew System::EventHandler(this, &adIndexForm::selfInfoButton_Click);
 			// 
-			// quit
+			// exitButton
 			// 
-			this->quit->Name = L"quit";
-			this->quit->Size = System::Drawing::Size(136, 22);
-			this->quit->Text = L"退出";
-			this->quit->Click += gcnew System::EventHandler(this, &adIndexForm::quit_Click);
+			this->exitButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->exitButton->Location = System::Drawing::Point(1112, 430);
+			this->exitButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->exitButton->Name = L"exitButton";
+			this->exitButton->Size = System::Drawing::Size(284, 72);
+			this->exitButton->TabIndex = 9;
+			this->exitButton->Text = L"注  销";
+			this->exitButton->UseVisualStyleBackColor = true;
+			this->exitButton->Click += gcnew System::EventHandler(this, &adIndexForm::exitButton_Click);
 			// 
-			// label1
+			// msgResponseButton
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(571, 9);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(41, 12);
-			this->label1->TabIndex = 3;
-			this->label1->Text = L"label1";
+			this->msgResponseButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->msgResponseButton->Location = System::Drawing::Point(1112, 290);
+			this->msgResponseButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->msgResponseButton->Name = L"msgResponseButton";
+			this->msgResponseButton->Size = System::Drawing::Size(284, 72);
+			this->msgResponseButton->TabIndex = 10;
+			this->msgResponseButton->Text = L"信息反馈处理";
+			this->msgResponseButton->UseVisualStyleBackColor = true;
+			this->msgResponseButton->Click += gcnew System::EventHandler(this, &adIndexForm::msgResponseButton_Click);
 			// 
-			// selfInfoItem
+			// aboutSysButton
 			// 
-			this->selfInfoItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->resetPSItem,
-					this->allSelfInfoItem
-			});
-			this->selfInfoItem->Name = L"selfInfoItem";
-			this->selfInfoItem->Size = System::Drawing::Size(85, 24);
-			this->selfInfoItem->Text = L"个人中心";
+			this->aboutSysButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->aboutSysButton->Location = System::Drawing::Point(764, 430);
+			this->aboutSysButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->aboutSysButton->Name = L"aboutSysButton";
+			this->aboutSysButton->Size = System::Drawing::Size(284, 72);
+			this->aboutSysButton->TabIndex = 11;
+			this->aboutSysButton->Text = L"关于系统";
+			this->aboutSysButton->UseVisualStyleBackColor = true;
+			this->aboutSysButton->Click += gcnew System::EventHandler(this, &adIndexForm::aboutSysButton_Click);
 			// 
-			// resetPSItem
+			// courseArrangementButton
 			// 
-			this->resetPSItem->Name = L"resetPSItem";
-			this->resetPSItem->Size = System::Drawing::Size(174, 24);
-			this->resetPSItem->Text = L"修改密码";
-			this->resetPSItem->Click += gcnew System::EventHandler(this, &adIndexForm::resetPassword_Click);
-			// 
-			// allSelfInfoItem
-			// 
-			this->allSelfInfoItem->Name = L"allSelfInfoItem";
-			this->allSelfInfoItem->Size = System::Drawing::Size(174, 24);
-			this->allSelfInfoItem->Text = L"查询个人信息";
-			this->allSelfInfoItem->Click += gcnew System::EventHandler(this, &adIndexForm::allSelfInfoItem_Click);
-			// 
-			// 专业与学生ToolStripMenuItem
-			// 
-			this->专业与学生ToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->addNewMajorItem,
-					this->allMajorsInfoItem
-			});
-			this->专业与学生ToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+			this->courseArrangementButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(134)));
-			this->专业与学生ToolStripMenuItem->Name = L"专业与学生ToolStripMenuItem";
-			this->专业与学生ToolStripMenuItem->Size = System::Drawing::Size(85, 24);
-			this->专业与学生ToolStripMenuItem->Text = L"专业管理";
+			this->courseArrangementButton->Location = System::Drawing::Point(398, 430);
+			this->courseArrangementButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->courseArrangementButton->Name = L"courseArrangementButton";
+			this->courseArrangementButton->Size = System::Drawing::Size(284, 72);
+			this->courseArrangementButton->TabIndex = 12;
+			this->courseArrangementButton->Text = L"排课";
+			this->courseArrangementButton->UseVisualStyleBackColor = true;
+			this->courseArrangementButton->Click += gcnew System::EventHandler(this, &adIndexForm::courseArrangementButton_Click);
 			// 
-			// addNewMajorItem
+			// addCourseButton
 			// 
-			this->addNewMajorItem->Name = L"addNewMajorItem";
-			this->addNewMajorItem->Size = System::Drawing::Size(174, 24);
-			this->addNewMajorItem->Text = L"新增专业";
-			this->addNewMajorItem->Click += gcnew System::EventHandler(this, &adIndexForm::addNewMajorItem_Click);
-			// 
-			// allMajorsInfoItem
-			// 
-			this->allMajorsInfoItem->Name = L"allMajorsInfoItem";
-			this->allMajorsInfoItem->Size = System::Drawing::Size(174, 24);
-			this->allMajorsInfoItem->Text = L"所有专业信息";
-			this->allMajorsInfoItem->Click += gcnew System::EventHandler(this, &adIndexForm::allMajorsInfoItem_Click);
-			// 
-			// addStuItem
-			// 
-			this->addStuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->学生注册ToolStripMenuItem,
-					this->allStusItem
-			});
-			this->addStuItem->Name = L"addStuItem";
-			this->addStuItem->Size = System::Drawing::Size(85, 24);
-			this->addStuItem->Text = L"学生管理";
-			// 
-			// 学生注册ToolStripMenuItem
-			// 
-			this->学生注册ToolStripMenuItem->Name = L"学生注册ToolStripMenuItem";
-			this->学生注册ToolStripMenuItem->Size = System::Drawing::Size(174, 24);
-			this->学生注册ToolStripMenuItem->Text = L"学生注册";
-			this->学生注册ToolStripMenuItem->Click += gcnew System::EventHandler(this, &adIndexForm::addStu_Click);
-			// 
-			// allStusItem
-			// 
-			this->allStusItem->Name = L"allStusItem";
-			this->allStusItem->Size = System::Drawing::Size(174, 24);
-			this->allStusItem->Text = L"查询学生信息";
-			this->allStusItem->Click += gcnew System::EventHandler(this, &adIndexForm::allStuIndo_Click);
-			// 
-			// courseManageItem
-			// 
-			this->courseManageItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
-				this->courseArrange,
-					this->modifyArrangement, this->toolStripSeparator1, this->addCourse, this->showAllCourse
-			});
-			this->courseManageItem->Name = L"courseManageItem";
-			this->courseManageItem->Size = System::Drawing::Size(85, 24);
-			this->courseManageItem->Text = L"课程管理";
-			// 
-			// courseArrange
-			// 
-			this->courseArrange->Name = L"courseArrange";
-			this->courseArrange->Size = System::Drawing::Size(152, 24);
-			this->courseArrange->Text = L"排课";
-			this->courseArrange->Click += gcnew System::EventHandler(this, &adIndexForm::courseArrange_Click);
-			// 
-			// modifyArrangement
-			// 
-			this->modifyArrangement->Name = L"modifyArrangement";
-			this->modifyArrangement->Size = System::Drawing::Size(152, 24);
-			this->modifyArrangement->Text = L"修改排课";
-			this->modifyArrangement->Click += gcnew System::EventHandler(this, &adIndexForm::modifyArrangement_Click);
-			// 
-			// addCourse
-			// 
-			this->addCourse->Name = L"addCourse";
-			this->addCourse->Size = System::Drawing::Size(152, 24);
-			this->addCourse->Text = L"添加课程";
-			this->addCourse->Click += gcnew System::EventHandler(this, &adIndexForm::addCourse_Click);
-			// 
-			// showAllCourse
-			// 
-			this->showAllCourse->Name = L"showAllCourse";
-			this->showAllCourse->Size = System::Drawing::Size(152, 24);
-			this->showAllCourse->Text = L"所有课程";
-			this->showAllCourse->Click += gcnew System::EventHandler(this, &adIndexForm::showAllCourse_Click);
-			// 
-			// 成绩管理ToolStripMenuItem
-			// 
-			this->成绩管理ToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->checkGradeItem });
-			this->成绩管理ToolStripMenuItem->Name = L"成绩管理ToolStripMenuItem";
-			this->成绩管理ToolStripMenuItem->Size = System::Drawing::Size(85, 24);
-			this->成绩管理ToolStripMenuItem->Text = L"成绩管理";
-			// 
-			// checkGradeItem
-			// 
-			this->checkGradeItem->Name = L"checkGradeItem";
-			this->checkGradeItem->Size = System::Drawing::Size(152, 24);
-			this->checkGradeItem->Text = L"成绩统计";
-			this->checkGradeItem->Click += gcnew System::EventHandler(this, &adIndexForm::checkGradeItem_Click);
-			// 
-			// helpItem
-			// 
-			this->helpItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
-				this->msgItem, this->aboutSysItem,
-					this->exitItem
-			});
-			this->helpItem->Name = L"helpItem";
-			this->helpItem->Size = System::Drawing::Size(53, 24);
-			this->helpItem->Text = L"帮助";
-			// 
-			// msgItem
-			// 
-			this->msgItem->Name = L"msgItem";
-			this->msgItem->Size = System::Drawing::Size(174, 24);
-			this->msgItem->Text = L"反馈信息处理";
-			this->msgItem->Click += gcnew System::EventHandler(this, &adIndexForm::msgItem_Click);
-			// 
-			// aboutSysItem
-			// 
-			this->aboutSysItem->Name = L"aboutSysItem";
-			this->aboutSysItem->Size = System::Drawing::Size(174, 24);
-			this->aboutSysItem->Text = L"关于系统";
-			this->aboutSysItem->Click += gcnew System::EventHandler(this, &adIndexForm::aboutSysItem_Click);
-			// 
-			// exitItem
-			// 
-			this->exitItem->Name = L"exitItem";
-			this->exitItem->Size = System::Drawing::Size(174, 24);
-			this->exitItem->Text = L"注销";
-			this->exitItem->Click += gcnew System::EventHandler(this, &adIndexForm::exitItem_Click);
-			// 
-			// adIndexMenu
-			// 
-			this->adIndexMenu->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			this->adIndexMenu->GripStyle = System::Windows::Forms::ToolStripGripStyle::Visible;
-			this->adIndexMenu->ImageScalingSize = System::Drawing::Size(32, 32);
-			this->adIndexMenu->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {
-				this->selfInfoItem, this->专业与学生ToolStripMenuItem,
-					this->addStuItem, this->courseManageItem, this->成绩管理ToolStripMenuItem, this->helpItem
-			});
-			this->adIndexMenu->Location = System::Drawing::Point(0, 0);
-			this->adIndexMenu->Name = L"adIndexMenu";
-			this->adIndexMenu->Size = System::Drawing::Size(702, 28);
-			this->adIndexMenu->TabIndex = 0;
-			this->adIndexMenu->Text = L"menuStrip1";
-			// 
-			// toolStripSeparator1
-			// 
-			this->toolStripSeparator1->Name = L"toolStripSeparator1";
-			this->toolStripSeparator1->Size = System::Drawing::Size(149, 6);
+			this->addCourseButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(134)));
+			this->addCourseButton->Location = System::Drawing::Point(52, 430);
+			this->addCourseButton->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->addCourseButton->Name = L"addCourseButton";
+			this->addCourseButton->Size = System::Drawing::Size(284, 72);
+			this->addCourseButton->TabIndex = 12;
+			this->addCourseButton->Text = L"添加课程";
+			this->addCourseButton->UseVisualStyleBackColor = true;
+			this->addCourseButton->Click += gcnew System::EventHandler(this, &adIndexForm::addCourseButton_Click);
 			// 
 			// adIndexForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
+			this->AutoScaleDimensions = System::Drawing::SizeF(12, 24);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(702, 317);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->statusStrip1);
-			this->Controls->Add(this->adIndexMenu);
-			this->IsMdiContainer = true;
-			this->MainMenuStrip = this->adIndexMenu;
+			this->ClientSize = System::Drawing::Size(1464, 586);
+			this->Controls->Add(this->addCourseButton);
+			this->Controls->Add(this->courseArrangementButton);
+			this->Controls->Add(this->aboutSysButton);
+			this->Controls->Add(this->msgResponseButton);
+			this->Controls->Add(this->exitButton);
+			this->Controls->Add(this->selfInfoButton);
+			this->Controls->Add(this->allMajorButton);
+			this->Controls->Add(this->resetPSButton);
+			this->Controls->Add(this->addMajorButton);
+			this->Controls->Add(this->allCourseButton);
+			this->Controls->Add(this->allStuButton);
+			this->Controls->Add(this->addStuButton);
+			this->Controls->Add(this->welLabel);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
 			this->Name = L"adIndexForm";
 			this->ShowIcon = false;
 			this->Text = L"简易教务管理系统 - 教务员端";
-			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &adIndexForm::adIndexForm_FormClosing);
-			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &adIndexForm::formClosed);
+			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &adIndexForm::adIndexForm_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &adIndexForm::adIndexForm_Load);
-			this->statusStrip1->ResumeLayout(false);
-			this->statusStrip1->PerformLayout();
-			this->contextMenuStrip1->ResumeLayout(false);
-			this->adIndexMenu->ResumeLayout(false);
-			this->adIndexMenu->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
-		DateTime monment = DateTime::Now;
-		int year = monment.Year;
-		int mon = monment.Month;
-		int date = monment.Day;
-
-		int h = monment.Hour;
-		int m = monment.Minute;
-		int s = monment.Second;
-
-		String ^hstr = (h<10) ? ("0" + h.ToString()) : h.ToString();
-		String ^mstr = (m<10) ? ("0" + m.ToString()) : m.ToString();
-		String ^sstr = (s<10) ? ("0" + s.ToString()) : s.ToString();
-		String ^monstr = (mon<10) ? ("0" + mon.ToString()) : mon.ToString();
-		String ^datestr = (date<10) ? ("0" + date.ToString()) : date.ToString();
-
-		String ^ dateStr = "当前时间： " + year.ToString() + "-" + monstr + "-" + datestr + "  ";
-		String ^ timeStr = hstr + ":" + mstr + ":" + sstr;
-
-		this->NowDate->Text = dateStr;
-		this->NowTime->Text = timeStr;
-	}
-	private: System::Void aboutSysItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		HelpInfo ^help = gcnew HelpInfo();
-		help->StartPosition = FormStartPosition::CenterScreen;
-		help->Name = "help";
-		help->Show();
-	}
-	private: System::Void resetPassword_Click(System::Object^  sender, System::EventArgs^  e) {
-		updatePasswd ^update = gcnew updatePasswd(thisLogin);
-		update->Name = "updatePasswd";
-		update->MdiParent = this;
-		update->StartPosition = FormStartPosition::CenterParent;
-		update->WindowState = FormWindowState::Maximized;
-		update->Show();
-	}
-	private: System::Void allStuIndo_Click(System::Object^  sender, System::EventArgs^  e) {
-		stuList^ list = gcnew stuList();
-		list->Name = "stuList";
-		list->MdiParent = this;
-		list->StartPosition = FormStartPosition::CenterParent;
-		list->WindowState = FormWindowState::Maximized;
-		list->Show();
-	}
-	private: System::Void adIndexForm_Load(System::Object^  sender, System::EventArgs^  e) {
-		string id;
-		id = thisLogin->getId();
-		this->label1->Text = "欢 迎 ";
-		this->label1->Text += gcnew String(id.c_str());
-
-	}
-	private: System::Void adIndexForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
-		if (!canQuit){
-			e->Cancel = true;
-			this->Hide();
-			return;
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		if (Application::OpenForms["addStu"] == nullptr) {
+			addStu ^adone = gcnew addStu();
+			adone->Show();
 		}
-		Application::Exit();
-	}
-	private: System::Void notifyIcon1_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		if (e->Button == System::Windows::Forms::MouseButtons::Left) //左键显示主窗体
-			this->Show();
-	}
-	private: System::Void show_Click(System::Object^  sender, System::EventArgs^  e) {
-		this->Show();
-	}
-	private: System::Void quit_Click(System::Object^  sender, System::EventArgs^  e) {
-		canQuit = true;
-		this->Close();
-	}
-
-
-	private: System::Void allSelfInfoItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("相关功能可以参见学生查询个人信息");
-	}
-	private: System::Void formClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
-		Application::Exit();
-	}
-	private: System::Void addStu_Click(System::Object^  sender, System::EventArgs^  e) {
-		addStu ^ add = gcnew addStu();
-		add->Name = "addStu";
-		add->MdiParent = this;
-		add->StartPosition = FormStartPosition::CenterParent;
-		add->WindowState = FormWindowState::Maximized;
-		add->Show();
-	}
-	private: System::Void addNewMajorItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		addMajor ^ add = gcnew addMajor();
-		add->Name = "addMajor";
-		add->MdiParent = this;
-		add->StartPosition = FormStartPosition::CenterParent;
-		add->WindowState = FormWindowState::Maximized;
-		add->Show();
-	}
-	private: System::Void allMajorsInfoItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		allMajor ^ all = gcnew allMajor();
-		all->Name = "allMajor";
-		all->MdiParent = this;
-		all->StartPosition = FormStartPosition::CenterParent;
-		all->WindowState = FormWindowState::Maximized;
-		all->Show();
-	}
-	private: System::Void exitItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		Application::OpenForms["loginForm1"]->Show();
-		if (Application::OpenForms["feedbackAdmin"] != nullptr) //关掉反馈窗体，释放套接字资源
-			Application::OpenForms["feedbackAdmin"]->Close();
-		this->notifyIcon1->Visible = false;
-		this->Hide();
-	}
-	private: System::Void checkGradeItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		ChartForm ^ chart = gcnew ChartForm(this->thisLogin);
-		addCourse->Name = "chartForm";
-		chart->MdiParent = this;
-		chart->StartPosition = FormStartPosition::CenterParent;
-		chart->WindowState = FormWindowState::Maximized;
-		chart->Show();
-	}
-	// 5-9排课表主键改为课程代码+教师工号
-	private: System::Void courseArrange_Click(System::Object^  sender, System::EventArgs^  e) {
-		allCourseArrangement ^courseArrange = gcnew allCourseArrangement(0); //新增排课记录
-		courseArrange->Name = "courseArrange";
-		courseArrange->MdiParent = this;
-		courseArrange->StartPosition = FormStartPosition::CenterParent;
-		courseArrange->WindowState = FormWindowState::Maximized;
-		courseArrange->Show();
-	}
-	private: System::Void addCourse_Click(System::Object^  sender, System::EventArgs^  e) {
-		addNewCourse ^ addCourse = gcnew addNewCourse();
-		addCourse->Name = "addCourse";
-		addCourse->MdiParent = this;
-		addCourse->StartPosition = FormStartPosition::CenterParent;
-		addCourse->WindowState = FormWindowState::Maximized;
-		addCourse->Show();
-	}
-	private: System::Void msgItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		if (Application::OpenForms["feedbackAdmin"] == nullptr){
-			feedbackAdmin ^feed = gcnew feedbackAdmin();
-			feed->Name = "feedbackAdmin";
-			feed->Text = "处理学生反馈";
-			feed->MdiParent = this;
-			feed->StartPosition = FormStartPosition::CenterParent;
-			feed->WindowState = FormWindowState::Maximized;
-			feed->Show();
-		}
-		else{
-			while (this->ActiveMdiChild != Application::OpenForms["feedbackAdmin"])
-				this->ActiveMdiChild->Hide();
+		else {
+			Application::OpenForms["addStu"]->Show(); 
 		}
 	}
-	private: System::Void modifyArrangement_Click(System::Object^  sender, System::EventArgs^  e) {
-		allCourseArrangement ^courseArrange = gcnew allCourseArrangement(1); //修改排课记录
-		courseArrange->Name = "courseArrange";
-		courseArrange->MdiParent = this;
-		courseArrange->StartPosition = FormStartPosition::CenterParent;
-		courseArrange->WindowState = FormWindowState::Maximized;
-		courseArrange->Show();
+	private: System::Void adIndexForm_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) {
+		Application::OpenForms["loginForm1"]->Close();
+
 	}
-private: System::Void showAllCourse_Click(System::Object^  sender, System::EventArgs^  e) {
-	 allCourse^ ac = gcnew allCourse();
-	 ac->Name = "allCourse";
-	 ac->MdiParent = this;
-	 ac->StartPosition = FormStartPosition::CenterParent;
-	 ac->WindowState = FormWindowState::Maximized;
-	 ac->Show();
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		if (Application::OpenForms["stuList"] == nullptr) {
+			stuList ^showList = gcnew stuList();
+			showList->Show();
+		}
+		else {
+			//窗体已经存在， 应该把它显示出来，而不是从新定义一个
+			Application::OpenForms["stuList"]->Show();
+
+		}
+	}
+	
+private: System::Void adIndexForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	string str = thisLogin->getId();
+	this->welLabel->Text = "欢迎 "+ gcnew String(str.c_str());
 }
+private: System::Void addMajorButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	addMajor ^addM= gcnew addMajor();
+	addM->Show();
+}
+private: System::Void allMajorButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	allMajor ^ allM = gcnew allMajor();
+	allM->Show();
+}
+private: System::Void exitButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	Application::OpenForms["loginForm1"]->Show();
+	this->Hide();
+}
+private: System::Void resetPSButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	updatePasswd ^update = gcnew updatePasswd(thisLogin);
+	update->Show();
+}
+private: System::Void selfInfoButton_Click(System::Object^  sender, System::EventArgs^  e) {
+			 MessageBox::Show("本模块将在后续章节实现");
+		 }
+		 //5-9
+private: System::Void courseArrangementButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	allCourseArrangement ^courseArrange = gcnew allCourseArrangement(0);
+	courseArrange->Show();
+}
+private: System::Void addCourseButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	addNewCourse ^addCourse = gcnew addNewCourse();
+	addCourse->Show();
+}
+private: System::Void msgResponseButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		MessageBox::Show("本模块将在后续章节实现");
+		 }
+private: System::Void aboutSysButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		 MessageBox::Show("本模块将在后续章节实现");
+		 }
+private: System::Void allCourseButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	allCourse ^ac = gcnew allCourse();
+	ac->Show();
+	}
 };
-
 }

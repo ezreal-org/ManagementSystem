@@ -138,7 +138,7 @@ namespace ManagementSystemV5 {
 		}
 	}
 	private: System::Void selectCourse_Load(System::Object^  sender, System::EventArgs^  e) {
-		char  cidTid[20], teacherId[20],courseId[20];
+		char  cidTid[20], teacherId[20], courseId[20];
 		string courseName, teacherName, classRoom, classTime;
 		courseArrangement *p = new courseArrangement();
 		coursesNeededSelectedList->Items->Clear();
@@ -147,11 +147,11 @@ namespace ManagementSystemV5 {
 		cli::array<String^>^ selectedCourseIdList = stu->getAllSelfSelectedCourses(thisLogin->getId());
 		for each(String ^item in list)
 		{
-			// 5-9 修改排课表主键
+			// 5-9 
 			sprintf(cidTid, "%s", item);
-			sprintf(courseId, "%s", item->Substring(0,item->IndexOf(" ")));
+			sprintf(courseId, "%s", item->Substring(0, item->IndexOf(" ")));
 			p = stu->readCourseArrangement(cidTid);
-			if (strlen(p->getClassRoom()) < 2) continue; //课室为空，教务员还没排的课不能选
+			if (strlen(p->getClassRoom()) < 2) continue; //为排课程不能选
 			bool isExsit = false;
 			for each(String ^cid in selectedCourseIdList)
 				if (item->Contains(cid))
@@ -159,7 +159,7 @@ namespace ManagementSystemV5 {
 					isExsit = true;
 					break;
 				}
-			if (isExsit) continue; //已选课程不能再选
+			if (isExsit) continue; //已选课程不能选
 			if (stu->readCourseInfo(courseId)->getType() == thisLogin->getType())
 			{
 				strcpy(teacherId, p->getTeacherId());
@@ -180,6 +180,7 @@ namespace ManagementSystemV5 {
 			}
 		}
 	}
+
 	private: System::Void submitButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		String ^idStr;
 		char id[20];
