@@ -81,6 +81,9 @@
     <ClInclude Include="helpInfo.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ChartForm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="loginForm.resx">
@@ -132,6 +135,9 @@
       <Filter>资源文件</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="updatePasswd.resx">
+      <Filter>资源文件</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="feedbackAdmin.resx">
       <Filter>资源文件</Filter>
     </EmbeddedResource>
   </ItemGroup>

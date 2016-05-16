@@ -107,7 +107,7 @@ namespace ManagementSystemV5 {
 			return storage.readMajor(id);
 		}
 		//删除专业
-		bool deleteMajor(char *id) {
+		bool deleteMajor(char *id){
 			Storage storage;
 			return storage.deleteMajor(id);
 		}
@@ -160,7 +160,7 @@ namespace ManagementSystemV5 {
 			return storage.readAllCourseId();
 		}
 		//获取所有教师id
-		cli::array<String ^>^ getAllTeacherId() {
+		cli::array<String ^>^ getAllTeacherId() { 
 			Storage storage;
 			vector<string> vstaffId;
 			ifstream input;
@@ -231,7 +231,7 @@ namespace ManagementSystemV5 {
 			return storage.readCourseArrangement(id);
 		}
 		//删除排课记录
-		bool deleteCourseArrangement(char *id) {
+		bool deleteCourseArrangement(char *id){
 			Storage storage;
 			return storage.deleteCourseArrangement(id);
 		}
@@ -241,7 +241,8 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.writeCourseArrangement(p);
 		}
-		// 5-9 读所有排课表
+		// 5-9 修改排课表主键
+		//获取所有排课表(courseId+teacherId)主键
 		cli::array<String^>^ readAllCourseArrangementId()
 		{
 			Storage storage;
@@ -266,7 +267,7 @@ namespace ManagementSystemV5 {
 				if (p->getType() == (int)UserTypeCode::USER_GRADUATE) {
 					sprintf(majorName, "%s", storage.readGraduateInfo(stuId)->getMajor());
 				}
-				else if (p->getType() == (int)UserTypeCode::USER_UNDERGRADUATE) {
+				else if(p->getType() == (int)UserTypeCode::USER_UNDERGRADUATE){
 					sprintf(majorName, "%s", storage.readUndergradateInfo(stuId)->getMajor());
 				}
 				else {
@@ -320,18 +321,18 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.readCourse(id);
 		}
+		//5-9 排课表主键改为课程ID + 教师ID
 		//获得所有自己教授课程代码
-		//5-9 
 		cli::array<String^>^ getSelfTeachCourseCode(char *teaId)
 		{
 			vector<string> vCourseId;
 			Storage storage;
-			char courseIdTeacherId[40], teacherId[20], courseId[20];
-			cli::array<String^>^ list = storage.readAllCourseArrangementId(); ////读排课表
+			char courseIdTeacherId[40], teacherId[20],courseId[20];
+			cli::array<String^>^ list = storage.readAllCourseArrangementId(); //读排课表
 			for each(String^ item in list) //从所有课程表中筛选出任课教师id为teaId的课程
 			{
 				sprintf(courseIdTeacherId, "%s", item);
-				sprintf(courseId, "%s", item->Substring(0, item->IndexOf(" ")));
+				sprintf(courseId, "%s", item->Substring(0,item->IndexOf(" ")));
 				strcpy(teacherId, storage.readCourseArrangement(courseIdTeacherId)->getTeacherId());
 				if (strcmp(teaId, teacherId) == 0)
 					vCourseId.push_back(courseId);
@@ -371,7 +372,7 @@ namespace ManagementSystemV5 {
 			StudentTable *p = nullptr; //学生基类指针
 			if (type == (int)UserTypeCode::USER_GRADUATE)
 				p = storage.readGraduateInfo(id);
-			else if (type == (int)UserTypeCode::USER_UNDERGRADUATE)
+			else if(type == (int)UserTypeCode::USER_UNDERGRADUATE)
 				p = storage.readUndergradateInfo(id);
 			return p;
 		}
@@ -418,7 +419,7 @@ namespace ManagementSystemV5 {
 			Storage storage;
 			return storage.readCourse(idName);
 		}
-
+		//读排课表
 		courseArrangement* readCourseArrangement(char *id)
 		{
 			Storage storage;

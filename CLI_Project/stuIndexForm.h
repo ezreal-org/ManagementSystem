@@ -1,8 +1,10 @@
 #pragma once
 #include "selectCourse.h"
+#include "typeDefinition.h"
 #include "courseSelected.h"
 #include "updatePasswd.h"
 #include "stuInfo.h"
+#include "ChartForm.h"
 
 namespace ManagementSystemV5 {
 
@@ -57,7 +59,7 @@ namespace ManagementSystemV5 {
 	private: System::Windows::Forms::ToolStripMenuItem^  resetPSItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  allSelfInfoItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  helpItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  responseItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  msgItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  aboutSysItem;
 	private: System::Windows::Forms::ToolStripStatusLabel^  toolStripStatusLabel2;
 	private: System::Windows::Forms::ToolStripStatusLabel^  NowTime;
@@ -91,7 +93,7 @@ namespace ManagementSystemV5 {
 			this->allSelectedCoursesItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolStripSeparator1 = (gcnew System::Windows::Forms::ToolStripSeparator());
 			this->helpItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->responseItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->msgItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->aboutSysItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->statusStrip1 = (gcnew System::Windows::Forms::StatusStrip());
@@ -178,19 +180,19 @@ namespace ManagementSystemV5 {
 			// helpItem
 			// 
 			this->helpItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
-				this->responseItem,
+				this->msgItem,
 					this->aboutSysItem, this->exitItem
 			});
 			this->helpItem->Name = L"helpItem";
 			this->helpItem->Size = System::Drawing::Size(53, 24);
 			this->helpItem->Text = L"帮助";
 			// 
-			// responseItem
+			// msgItem
 			// 
-			this->responseItem->Name = L"responseItem";
-			this->responseItem->Size = System::Drawing::Size(152, 24);
-			this->responseItem->Text = L"反馈信息";
-			this->responseItem->Click += gcnew System::EventHandler(this, &stuIndexForm::responseItem_Click);
+			this->msgItem->Name = L"msgItem";
+			this->msgItem->Size = System::Drawing::Size(152, 24);
+			this->msgItem->Text = L"反馈信息";
+			this->msgItem->Click += gcnew System::EventHandler(this, &stuIndexForm::msgItem_Click);
 			// 
 			// aboutSysItem
 			// 
@@ -358,14 +360,33 @@ namespace ManagementSystemV5 {
 		cS->Show();
 	}
 	private: System::Void checkAllGradeItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("本模块将在第五章进行实现");
+		ChartForm ^cF = gcnew ChartForm(thisLogin);
+		cF->Name = "chartform";
+		cF->MdiParent = this;
+		cF->StartPosition = FormStartPosition::CenterParent;
+		cF->WindowState = FormWindowState::Maximized;
+		cF->Show();
 	}
 	private: System::Void exitItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		string strTemp;
+		if (thisLogin->getType() == (int)UserTypeCode::USER_GRADUATE) { //硕士生
+			Graduate *gra = new Graduate();
+			strTemp = gra->getSelfInfo(thisLogin->getId())->getName();
+			delete gra;
+		}
+		else if (thisLogin->getType() == (int)UserTypeCode::USER_UNDERGRADUATE) {
+			Undergraduate *stu = new Undergraduate();
+			strTemp = stu->getSelfInfo(thisLogin->getId())->getName();
+			delete stu;
+		}
+		String ^loginName = gcnew String(strTemp.c_str());
+		if (Application::OpenForms[loginName] != nullptr) //关掉反馈窗体，释放套接字资源
+			Application::OpenForms[loginName]->Close();
 		this->Hide();
 		Application::OpenForms["loginForm1"]->Show();
 	}
-	private: System::Void responseItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("本模块将在第七章进行实现");
+	private: System::Void msgItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		MessageBox::Show("第七章实现");
 	}
 	private: System::Void stuIndexForm_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
 		Application::Exit();
